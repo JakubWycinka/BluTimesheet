@@ -18,29 +18,17 @@ namespace BluTimesheet
     {
         public static void Register(HttpConfiguration config)
         {
-            
             var container = new UnityContainer();
-            container.RegisterType<IProjectTypeService, ProjectTypeService>(new HierarchicalLifetimeManager());
-            
-           config.DependencyResolver = new UnityDependencyResolver(container);
+            container.RegisterType<IProjectTypeService, ProjectTypeService>();
+            container.RegisterType<IProjectService, ProjectService>();
 
-
-
-
-
-
-            //Add any additional configuration code.
-
+            config.DependencyResolver = new UnityDependencyResolver(container);
             config.MapHttpAttributeRoutes();
-
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                defaults: new {id = RouteParameter.Optional}
             );
-            
-         
-
         }
     }
 }

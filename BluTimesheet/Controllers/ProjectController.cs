@@ -1,11 +1,5 @@
-﻿using BluTimesheet.Controllers.interfaces;
-using BluTimesheet.Models;
-using BluTimesheet.Services;
-using BluTimesheet.Services.implementations;
+﻿using BluTimesheet.Models;
 using BluTimesheet.Services.interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;

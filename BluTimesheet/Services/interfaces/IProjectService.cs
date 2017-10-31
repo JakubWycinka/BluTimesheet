@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BluTimesheet.Controllers.interfaces
+namespace BluTimesheet.Services.interfaces
 {
     public interface IProjectService
     {

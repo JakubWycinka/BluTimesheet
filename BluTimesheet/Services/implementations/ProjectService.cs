@@ -1,12 +1,9 @@
-﻿using BluTimesheet.Controllers.interfaces;
-using BluTimesheet.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using BluTimesheet.Models;
+using BluTimesheet.Repositories;
+using BluTimesheet.Services.interfaces;
 
-namespace BluTimesheet.Services
+namespace BluTimesheet.Services.implementations
 {
     public class ProjectService : IProjectService
     {
