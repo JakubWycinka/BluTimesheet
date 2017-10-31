@@ -9,10 +9,10 @@ namespace BluTimesheet.Services.interfaces
 {
     interface IActivityService
     {
-        void AddActivity(Activity activity);
-        void RemoveActivityById(int activityId);
-        Activity GetActivityById(int activityId);
-        void UpdateActivity(Activity activity);
-        List<Activity> GetActivities();
+        void Add(Activity activity);
+        void Remove(int activityId);
+        Activity Get(int activityId);
+        void Update(Activity activity);
+        IEnumerable<Activity> GetAll();
     }
 }

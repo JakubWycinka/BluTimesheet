@@ -17,27 +17,27 @@ namespace BluTimesheet.Services.implementations
             this.projectTypeRepository = projectTypeRepository;
         }
 
-        public void AddProjectType(ProjectType projectType)
+        public void Add(ProjectType projectType)
         {
             projectTypeRepository.Add(projectType);
         }
 
-        public ProjectType GetProjectTypeById(int projectTypeId)
+        public ProjectType Get(int projectTypeId)
         {
-            return projectTypeRepository.GetById(projectTypeId);
+            return projectTypeRepository.Get(projectTypeId);
         }
 
-        public List<ProjectType> GetProjectTypes()
+        public IEnumerable<ProjectType> GetAll()
         {
-            return projectTypeRepository.GetProjectTypes();
+            return projectTypeRepository.GetAll();
         }
 
-        public void RemoveProjectTypeById(int projectTypeId)
+        public void Remove(int projectTypeId)
         {
-            projectTypeRepository.RemoveById(projectTypeId);
+            projectTypeRepository.Remove(projectTypeId);
         }
 
-        public void UpdateProjectType(ProjectType projectType)
+        public void Update(ProjectType projectType)
         {
             projectTypeRepository.Update(projectType);
         }

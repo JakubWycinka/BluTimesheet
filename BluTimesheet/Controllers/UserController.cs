@@ -23,7 +23,7 @@ namespace BluTimesheet.Controllers
         [HttpPost]
         public HttpResponseMessage Register(User user)
         {
-            userService.AddUser(user);
+            userService.Add(user);
 
             return Request.CreateResponse(HttpStatusCode.OK);
 

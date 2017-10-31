@@ -7,9 +7,9 @@ using System.Web;
 
 namespace BluTimesheet.Repositories
 {
-    public class UserTypeRepository
+    public class UserTypeRepository : IDisposable
     {
-        private readonly TimesheetDbContext context;
+        private TimesheetDbContext context;
 
         public UserTypeRepository(TimesheetDbContext context)
         {
@@ -21,12 +21,12 @@ namespace BluTimesheet.Repositories
             context.UserType.Add(userType);
         }
 
-        public UserType GetById(int userTypeId)
+        public UserType Get(int userTypeId)
         {
             return context.UserType.Find(userTypeId);
         }
 
-        public void RemoveById(int userTypeId)
+        public void Remove(int userTypeId)
         {
             UserType tempUserType = new UserType
             {
@@ -47,9 +47,27 @@ namespace BluTimesheet.Repositories
 
         }
 
-        public List<UserType> GetUserTypes()
+        public IEnumerable<UserType> GetAll()
         {
-            return context.UserType.ToList();
+            return context.UserType.AsEnumerable<UserType>();
+        }
+
+        protected void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (context != null)
+                {
+                    context.Dispose();
+                    context = null;
+                }
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

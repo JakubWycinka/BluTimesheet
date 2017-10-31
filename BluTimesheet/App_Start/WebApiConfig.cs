@@ -21,8 +21,9 @@ namespace BluTimesheet
             var container = new UnityContainer();
             container.RegisterType<IProjectTypeService, ProjectTypeService>();
             container.RegisterType<IProjectService, ProjectService>();
-
             config.DependencyResolver = new UnityDependencyResolver(container);
+
+
             config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

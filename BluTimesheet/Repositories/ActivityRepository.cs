@@ -1,13 +1,14 @@
 ﻿using BluTimesheet.Context;
 using BluTimesheet.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace BluTimesheet.Repositories
 {
-    public class ActivityRepository
+    public class ActivityRepository : IDisposable
     {
-        private readonly TimesheetDbContext context;
+        private TimesheetDbContext context;
 
         public ActivityRepository(TimesheetDbContext context)
         {
@@ -19,12 +20,12 @@ namespace BluTimesheet.Repositories
             context.Activity.Add(activity);
         }
 
-        public Activity GetById(int activityId)
+        public Activity Get(int activityId)
         {
             return context.Activity.Find(activityId);
         }
 
-        public void RemoveById(int activityId)
+        public void Remove(int activityId)
         {
             Activity tempActivity = new Activity
             {
@@ -44,9 +45,27 @@ namespace BluTimesheet.Repositories
 
         }
 
-        public List<Activity> GetActivites()
+        public IEnumerable<Activity> GetAll()
         {
-            return context.Activity.ToList();
+            return context.Activity.AsEnumerable<Activity>();
+        }
+
+        protected void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (context != null)
+                {
+                    context.Dispose();
+                    context = null;
+                }
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

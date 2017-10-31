@@ -7,28 +7,28 @@ using System.Web;
 
 namespace BluTimesheet.Repositories
 {
-    public class DailyActivityRepository
+    public class DailyActivityRepository : IDisposable
     {
-        private readonly TimesheetDbContext context;
+        private TimesheetDbContext context;
 
         public DailyActivityRepository(TimesheetDbContext context)
         {
             this.context = context;
         }
 
-        public void AddDailyActivity(DailyActivity dailyActivity)
+        public void Add(DailyActivity dailyActivity)
         {
             context.DailyActivity.Add(dailyActivity); 
         }
 
-        public DailyActivity GetDailyActivityById(int dailyActivityId)
+        public DailyActivity Get(int dailyActivityId)
         {
             return context.DailyActivity.Find(dailyActivityId);
         }
         
-        public List<DailyActivity> GetAllDailyActivitiesInDb()
+        public IEnumerable<DailyActivity> GetAll()
         {
-            return context.DailyActivity.ToList();
+            return context.DailyActivity.AsEnumerable<DailyActivity>();
         }
 
         public void Update(DailyActivity dailyActivity)
@@ -47,7 +47,7 @@ namespace BluTimesheet.Repositories
             }
         }
 
-        public void RemoveDailyActivityById(int dailyActivityId)
+        public void Remove(int dailyActivityId)
         {
             DailyActivity tempDailyActivity = new DailyActivity
             {
@@ -57,7 +57,7 @@ namespace BluTimesheet.Repositories
             context.DailyActivity.Remove(tempDailyActivity);
         }
 
-        public void ApproveDailyActivity(DailyActivity dailyActivity)
+        public void Approve(DailyActivity dailyActivity)
         {
             var activityFromDb = context.DailyActivity.SingleOrDefault(activityInDb => activityInDb.Id == dailyActivity.Id);
             if (activityFromDb != null)
@@ -67,6 +67,22 @@ namespace BluTimesheet.Repositories
             }
         }
 
+        protected void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (context != null)
+                {
+                    context.Dispose();
+                    context = null;
+                }
+            }
+        }
 
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
     }
 }

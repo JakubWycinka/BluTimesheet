@@ -18,32 +18,32 @@ namespace BluTimesheet.Services.implementations
             this.dailyActivityRepository = dailyActivityRepository;
         }
 
-        public void AddDailyActivity(DailyActivity dailyActivity)
+        public void Add(DailyActivity dailyActivity)
         {
-            dailyActivityRepository.AddDailyActivity(dailyActivity);
+            dailyActivityRepository.Add(dailyActivity);
         }
 
-        public void ApproveDailyActivity(DailyActivity dailyActivity)
+        public void Approve(DailyActivity dailyActivity)
         {
-            dailyActivityRepository.ApproveDailyActivity(dailyActivity);
+            dailyActivityRepository.Approve(dailyActivity);
         }
 
-        public List<DailyActivity> GetActivities()
+        public IEnumerable<DailyActivity> GetAll()
         {
-            return dailyActivityRepository.GetAllDailyActivitiesInDb();
+            return dailyActivityRepository.GetAll();
         }
 
-        public DailyActivity GetDailyActivityById(int dailyActivityId)
+        public DailyActivity Get(int dailyActivityId)
         {
-            return dailyActivityRepository.GetDailyActivityById(dailyActivityId);
+            return dailyActivityRepository.Get(dailyActivityId);
         }
 
-        public void RemoveDailyActivityById(int dailyActivityId)
+        public void Remove(int dailyActivityId)
         {
-            dailyActivityRepository.RemoveDailyActivityById(dailyActivityId);
+            dailyActivityRepository.Remove(dailyActivityId);
         }
 
-        public void UpdateDailyActivity(DailyActivity dailyActivity)
+        public void Update(DailyActivity dailyActivity)
         {
             dailyActivityRepository.Update(dailyActivity);
         }

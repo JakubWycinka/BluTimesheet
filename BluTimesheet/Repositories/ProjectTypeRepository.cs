@@ -21,12 +21,12 @@ namespace BluTimesheet.Repositories
             context.ProjectType.Add(projectType);
         }
 
-        public ProjectType GetById(int projectTypeId)
+        public ProjectType Get(int projectTypeId)
         {
             return context.ProjectType.Find(projectTypeId);
         }
 
-        public void RemoveById(int projectTypeId)
+        public void Remove(int projectTypeId)
         {
             ProjectType tempProjectType = new ProjectType
             {
@@ -47,9 +47,9 @@ namespace BluTimesheet.Repositories
 
         }
 
-        public List<ProjectType> GetProjectTypes()
+        public IEnumerable<ProjectType> GetAll()
         {
-            return context.ProjectType.ToList();
+            return context.ProjectType.AsEnumerable<ProjectType>();
         }
 
         protected void Dispose(bool disposing)

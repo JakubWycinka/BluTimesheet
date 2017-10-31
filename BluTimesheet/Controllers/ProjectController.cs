@@ -22,7 +22,7 @@ namespace BluTimesheet.Controllers
         [HttpPost]
         public HttpResponseMessage Add(Project project)
         {
-            projectService.AddProject(project);
+            projectService.Add(project);
 
             return Request.CreateResponse(HttpStatusCode.OK);
 
@@ -32,7 +32,7 @@ namespace BluTimesheet.Controllers
         [HttpPost]
         public HttpResponseMessage AddType(ProjectType projectType)
         {
-            projectTypeService.AddProjectType(projectType);
+            projectTypeService.Add(projectType);
 
             return Request.CreateResponse(HttpStatusCode.OK);
 

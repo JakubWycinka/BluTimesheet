@@ -9,11 +9,11 @@ namespace BluTimesheet.Services.interfaces
 {
     interface IDailyActivityService
     {
-        void AddDailyActivity(DailyActivity dailyActivity);
-        void RemoveDailyActivityById(int dailyActivityId);
-        DailyActivity GetDailyActivityById(int dailyActivityId);
-        void UpdateDailyActivity(DailyActivity dailyActivity);
-        List<DailyActivity> GetActivities();
-        void ApproveDailyActivity(DailyActivity dailyActivity);
+        void Add(DailyActivity dailyActivity);
+        void Remove(int dailyActivityId);
+        DailyActivity Get(int dailyActivityId);
+        void Update(DailyActivity dailyActivity);
+        IEnumerable<DailyActivity> GetAll();
+        void Approve(DailyActivity dailyActivity);
     }
 }

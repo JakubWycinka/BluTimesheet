@@ -7,26 +7,26 @@ using System.Web;
 
 namespace BluTimesheet.Repositories
 {
-    public class UserRepository
+    public class UserRepository : IDisposable
     {
-        private readonly TimesheetDbContext context;
+        private TimesheetDbContext context;
 
         public UserRepository(TimesheetDbContext context)
         {
             this.context = context;
         }
 
-        public void AddUser(User user)
+        public void Add(User user)
         {
             context.User.Add(user);
         }
 
-        public User GetUserById(int userId)
+        public User Get(int userId)
         {
             return context.User.Find(userId);
         }
 
-        public void UpdateUser(User user)
+        public void Update(User user)
         {
             var userFromDb = context.User.SingleOrDefault(userInDb => userInDb.Id == user.Id);
             if (userFromDb != null)
@@ -40,7 +40,7 @@ namespace BluTimesheet.Repositories
             }
         }
 
-        public void RemoveUserById(int userId)
+        public void Remove(int userId)
         {
             User tempUser = new User
             {
@@ -49,17 +49,34 @@ namespace BluTimesheet.Repositories
             context.User.Remove(tempUser);
         }
 
-        public ICollection<DailyActivity> GetUserActivities(User user)
+        public IEnumerable<DailyActivity> GetUserActivities(User user)
         {
           
             return context.User.Find(user).AllDailyActivities;
 
         }
 
-        public List<User> GetUsers()
+        public IEnumerable<User> GetAll()
         {
-            return context.User.ToList();
+            return context.User.AsEnumerable<User>();
         }
 
+        protected void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (context != null)
+                {
+                    context.Dispose();
+                    context = null;
+                }
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
     }
 }

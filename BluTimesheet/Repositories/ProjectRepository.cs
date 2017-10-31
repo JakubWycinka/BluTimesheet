@@ -7,9 +7,9 @@ using System.Web;
 
 namespace BluTimesheet.Repositories
 {
-    public class ProjectRepository 
+    public class ProjectRepository : IDisposable
     {
-        private readonly TimesheetDbContext context;
+        private TimesheetDbContext context;
 
         public ProjectRepository(TimesheetDbContext context)
         {
@@ -21,12 +21,12 @@ namespace BluTimesheet.Repositories
             context.Project.Add(project);
         }
 
-        public Project GetById(int projectId)
+        public Project Get(int projectId)
         {
             return context.Project.Find(projectId);
         }
 
-        public void RemoveById(int projectId)
+        public void Remove(int projectId)
         {
             Project tempProject = new Project
             {
@@ -48,12 +48,27 @@ namespace BluTimesheet.Repositories
 
         }
 
-        public List<Project> GetProjects()
+        public IEnumerable<Project> GetAll()
         {
-            return context.Project.ToList();
+            return context.Project.AsEnumerable<Project>();
         }
 
+        protected void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (context != null)
+                {
+                    context.Dispose();
+                    context = null;
+                }
+            }
+        }
 
-
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
     }
 }

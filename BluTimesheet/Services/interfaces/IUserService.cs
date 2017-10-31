@@ -8,11 +8,11 @@ namespace BluTimesheet.Controllers.interfaces
 {
     public interface IUserService
     {
-        void AddUser(User user);
-        void RemoveUserById(int userId);
-        User GetUserById(int userId);
-        void UpdateUser(User user);
-        List<User> GetUsers();
-        ICollection<DailyActivity> GetUserActivites(User user);
+        void Add(User user);
+        void Remove(int userId);
+        User Get(int userId);
+        void Update(User user);
+        IEnumerable<User> GetAll();
+        IEnumerable<DailyActivity> GetUserActivites(User user);
     }
 }

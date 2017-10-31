@@ -14,34 +14,34 @@ namespace BluTimesheet.Services
             this.userRepository = userRepository;
         }
 
-        public void AddUser(User user)
+        public void Add(User user)
         {
-            userRepository.AddUser(user);
+            userRepository.Add(user);
         }
 
-        public ICollection<DailyActivity> GetUserActivites(User user)
+        public IEnumerable<DailyActivity> GetUserActivites(User user)
         {
             return userRepository.GetUserActivities(user);
         }
         
-        public User GetUserById(int userId)
+        public User Get(int userId)
         {
-            return userRepository.GetUserById(userId);
+            return userRepository.Get(userId);
         }
 
-        public List<User> GetUsers()
+        public IEnumerable<User> GetAll()
         {
-            return userRepository.GetUsers();
+            return userRepository.GetAll();
         }
 
-        public void RemoveUserById(int userId)
+        public void Remove(int userId)
         {
-            userRepository.RemoveUserById(userId);
+            userRepository.Remove(userId);
         }
 
-        public void UpdateUser(User user)
+        public void Update(User user)
         {
-            userRepository.UpdateUser(user);
+            userRepository.Update(user);
         }
 
         

@@ -17,28 +17,28 @@ namespace BluTimesheet.Services.implementations
             this.userTypeRepository = userTypeRepository;
         }
 
-        public void AddUserType(UserType userType)
+        public void Add(UserType userType)
         {
             userTypeRepository.Add(userType);
             
         }
 
-        public UserType GetUserTypeById(int userTypeId)
+        public UserType Get(int userTypeId)
         {
-            return userTypeRepository.GetById(userTypeId);
+            return userTypeRepository.Get(userTypeId);
         }
 
-        public List<UserType> GetUserTypes()
+        public IEnumerable<UserType> GetAll()
         {
-            return userTypeRepository.GetUserTypes();
+            return userTypeRepository.GetAll();
         }
 
-        public void RemoveUserTypeById(int userTypeId)
+        public void Remove(int userTypeId)
         {
-            userTypeRepository.RemoveById(userTypeId);
+            userTypeRepository.Remove(userTypeId);
         }
 
-        public void UpdateUserType(UserType userType)
+        public void Update(UserType userType)
         {
             userTypeRepository.Update(userType);
         }

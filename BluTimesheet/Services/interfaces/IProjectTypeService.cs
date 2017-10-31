@@ -9,10 +9,10 @@ namespace BluTimesheet.Services.interfaces
 {
     public interface IProjectTypeService
     {
-        void AddProjectType(ProjectType projectType);
-        void RemoveProjectTypeById(int projectTypeId);
-        ProjectType GetProjectTypeById(int projectTypeId);
-        void UpdateProjectType(ProjectType projectType);
-        List<ProjectType> GetProjectTypes();
+        void Add(ProjectType projectType);
+        void Remove(int projectTypeId);
+        ProjectType Get(int projectTypeId);
+        void Update(ProjectType projectType);
+        IEnumerable<ProjectType> GetAll();
     }
 }

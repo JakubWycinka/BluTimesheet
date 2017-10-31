@@ -9,10 +9,10 @@ namespace BluTimesheet.Services.interfaces
 {
     interface IUserTypeService
     {
-        void AddUserType(UserType userType);
-        void RemoveUserTypeById(int userTypeId);
-        UserType GetUserTypeById(int userTypeId);
-        void UpdateUserType(UserType userType);
-        List<UserType> GetUserTypes();
+        void Add(UserType userType);
+        void Remove(int userTypeId);
+        UserType Get(int userTypeId);
+        void Update(UserType userType);
+        IEnumerable<UserType> GetAll();
     }
 }

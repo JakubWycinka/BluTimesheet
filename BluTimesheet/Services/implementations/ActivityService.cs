@@ -17,27 +17,27 @@ namespace BluTimesheet.Services.implementations
             this.activityRepository = activityRepository;
         }
 
-        public void AddActivity(Activity activity)
+        public void Add(Activity activity)
         {
             activityRepository.Add(activity);
         }
 
-        public List<Activity> GetActivities()
+        public IEnumerable<Activity> GetAll()
         {
-            return activityRepository.GetActivites();
+            return activityRepository.GetAll();
         }
 
-        public Activity GetActivityById(int activityId)
+        public Activity Get(int activityId)
         {
-            return activityRepository.GetById(activityId);
+            return activityRepository.Get(activityId);
         }
 
-        public void RemoveActivityById(int activityId)
+        public void Remove(int activityId)
         {
-            activityRepository.RemoveById(activityId);
+            activityRepository.Remove(activityId);
         }
 
-        public void UpdateActivity(Activity activity)
+        public void Update(Activity activity)
         {
             activityRepository.Update(activity);
         }
