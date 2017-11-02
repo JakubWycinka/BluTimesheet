@@ -10,6 +10,7 @@ namespace BluTimesheet.Models
     {
         [Key]
         public int Id { get; set; }
+        [Required]
         public string Role { get; set; }
     }
 }

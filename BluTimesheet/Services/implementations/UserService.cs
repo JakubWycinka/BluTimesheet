@@ -24,9 +24,9 @@ namespace BluTimesheet.Services
             return userRepository.GetUserActivities(user);
         }
         
-        public User Get(int userId)
+        public User Get(int id)
         {
-            return userRepository.Get(userId);
+            return userRepository.Get(id);
         }
 
         public IEnumerable<User> GetAll()
@@ -34,9 +34,9 @@ namespace BluTimesheet.Services
             return userRepository.GetAll();
         }
 
-        public void Remove(int userId)
+        public void Remove(int id)
         {
-            userRepository.Remove(userId);
+            userRepository.Remove(id);
         }
 
         public void Update(User user)

@@ -22,9 +22,9 @@ namespace BluTimesheet.Services.implementations
             projectTypeRepository.Add(projectType);
         }
 
-        public ProjectType Get(int projectTypeId)
+        public ProjectType Get(int id)
         {
-            return projectTypeRepository.Get(projectTypeId);
+            return projectTypeRepository.Get(id);
         }
 
         public IEnumerable<ProjectType> GetAll()
@@ -32,9 +32,9 @@ namespace BluTimesheet.Services.implementations
             return projectTypeRepository.GetAll();
         }
 
-        public void Remove(int projectTypeId)
+        public void Remove(int id)
         {
-            projectTypeRepository.Remove(projectTypeId);
+            projectTypeRepository.Remove(id);
         }
 
         public void Update(ProjectType projectType)

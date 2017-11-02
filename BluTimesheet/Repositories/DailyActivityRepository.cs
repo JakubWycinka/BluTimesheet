@@ -18,12 +18,13 @@ namespace BluTimesheet.Repositories
 
         public void Add(DailyActivity dailyActivity)
         {
-            context.DailyActivity.Add(dailyActivity); 
+            context.DailyActivity.Add(dailyActivity);
+            context.SaveChanges();
         }
 
-        public DailyActivity Get(int dailyActivityId)
+        public DailyActivity Get(int id)
         {
-            return context.DailyActivity.Find(dailyActivityId);
+            return context.DailyActivity.Find(id);
         }
         
         public IEnumerable<DailyActivity> GetAll()
@@ -36,25 +37,23 @@ namespace BluTimesheet.Repositories
             var activityFromDb = context.DailyActivity.SingleOrDefault(activityInDb => activityInDb.Id == dailyActivity.Id);
             if (activityFromDb != null)
             {
-                activityFromDb.BeginingHour = dailyActivity.BeginingHour;
-                activityFromDb.BeginingMinute = dailyActivity.BeginingMinute;
-                activityFromDb.EndingHour = dailyActivity.EndingHour;
-                activityFromDb.EndingMinute = dailyActivity.EndingMinute;
-                activityFromDb.Date = dailyActivity.Date;
+                activityFromDb.Begining = dailyActivity.Begining;
+                activityFromDb.End = dailyActivity.Begining;
                 activityFromDb.Activity = dailyActivity.Activity;
                 activityFromDb.Project = dailyActivity.Project;
                 context.SaveChanges();
             }
         }
 
-        public void Remove(int dailyActivityId)
+        public void Remove(int id)
         {
             DailyActivity tempDailyActivity = new DailyActivity
             {
-                Id = dailyActivityId
+                Id = id
         };
 
             context.DailyActivity.Remove(tempDailyActivity);
+            context.SaveChanges();
         }
 
         public void Approve(DailyActivity dailyActivity)

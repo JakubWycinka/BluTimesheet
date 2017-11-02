@@ -19,9 +19,9 @@ namespace BluTimesheet.Services.implementations
             projectRepository.Add(project);
         }
 
-        public Project Get(int projectId)
+        public Project Get(int id)
         {
-            return projectRepository.Get(projectId);
+            return projectRepository.Get(id);
         }
 
         public IEnumerable<Project> GetAll()
@@ -29,9 +29,9 @@ namespace BluTimesheet.Services.implementations
             return projectRepository.GetAll();
         }
 
-        public void Remove(int projectId)
+        public void Remove(int id)
         {
-            projectRepository.Remove(projectId);
+            projectRepository.Remove(id);
         }
 
         public void Update(Project project)

@@ -33,14 +33,14 @@ namespace BluTimesheet.Services.implementations
             return dailyActivityRepository.GetAll();
         }
 
-        public DailyActivity Get(int dailyActivityId)
+        public DailyActivity Get(int id)
         {
-            return dailyActivityRepository.Get(dailyActivityId);
+            return dailyActivityRepository.Get(id);
         }
 
-        public void Remove(int dailyActivityId)
+        public void Remove(int id)
         {
-            dailyActivityRepository.Remove(dailyActivityId);
+            dailyActivityRepository.Remove(id);
         }
 
         public void Update(DailyActivity dailyActivity)

@@ -18,20 +18,22 @@ namespace BluTimesheet.Repositories
         public void Add(Activity activity)
         {
             context.Activity.Add(activity);
+            context.SaveChanges();
         }
 
-        public Activity Get(int activityId)
+        public Activity Get(int id)
         {
-            return context.Activity.Find(activityId);
+            return context.Activity.Find(id);
         }
 
-        public void Remove(int activityId)
+        public void Remove(int id)
         {
             Activity tempActivity = new Activity
             {
-                Id = activityId
+                Id = id
             };
             context.Activity.Remove(tempActivity);
+            context.SaveChanges();
         }
 
         public void Update(Activity activity)

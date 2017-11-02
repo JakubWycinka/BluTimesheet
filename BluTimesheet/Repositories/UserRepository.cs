@@ -19,11 +19,12 @@ namespace BluTimesheet.Repositories
         public void Add(User user)
         {
             context.User.Add(user);
+            context.SaveChanges();
         }
 
-        public User Get(int userId)
+        public User Get(int id)
         {
-            return context.User.Find(userId);
+            return context.User.Find(id);
         }
 
         public void Update(User user)
@@ -34,25 +35,26 @@ namespace BluTimesheet.Repositories
                 userFromDb.Name = user.Name;
                 userFromDb.Surname = user.Surname;
                 userFromDb.UserType = user.UserType;
-                userFromDb.AllDailyActivities = user.AllDailyActivities;
+                userFromDb.DailyActivities = user.DailyActivities;
                 userFromDb.Email = user.Email;                
                 context.SaveChanges();
             }
         }
 
-        public void Remove(int userId)
+        public void Remove(int id)
         {
             User tempUser = new User
             {
-                Id = userId
+                Id = id
             };
             context.User.Remove(tempUser);
+            context.SaveChanges();
         }
 
-        public IEnumerable<DailyActivity> GetUserActivities(User user)
+        public ICollection<DailyActivity> GetUserActivities(User user)
         {
           
-            return context.User.Find(user).AllDailyActivities;
+            return context.User.Find(user).DailyActivities;
 
         }
 

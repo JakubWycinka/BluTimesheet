@@ -10,8 +10,8 @@ namespace BluTimesheet.Services.interfaces
     interface IDailyActivityService
     {
         void Add(DailyActivity dailyActivity);
-        void Remove(int dailyActivityId);
-        DailyActivity Get(int dailyActivityId);
+        void Remove(int id);
+        DailyActivity Get(int id);
         void Update(DailyActivity dailyActivity);
         IEnumerable<DailyActivity> GetAll();
         void Approve(DailyActivity dailyActivity);

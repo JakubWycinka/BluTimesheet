@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace BluTimesheet.Controllers
 {
-    public class ProjectController : ApiController
+    public class ActivityController : ApiController
     {
     }
 }

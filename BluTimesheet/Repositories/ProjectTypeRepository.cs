@@ -19,20 +19,22 @@ namespace BluTimesheet.Repositories
         public void Add(ProjectType projectType)
         {
             context.ProjectType.Add(projectType);
+            context.SaveChanges();
         }
 
-        public ProjectType Get(int projectTypeId)
+        public ProjectType Get(int id)
         {
-            return context.ProjectType.Find(projectTypeId);
+            return context.ProjectType.Find(id);
         }
 
-        public void Remove(int projectTypeId)
+        public void Remove(int id)
         {
             ProjectType tempProjectType = new ProjectType
             {
-                Id = projectTypeId
+                Id = id
             };
             context.ProjectType.Remove(tempProjectType);
+            context.SaveChanges();
         }
 
         public void Update(ProjectType projectType)

@@ -19,20 +19,22 @@ namespace BluTimesheet.Repositories
         public void Add(UserType userType)
         {
             context.UserType.Add(userType);
+            context.SaveChanges();
         }
 
-        public UserType Get(int userTypeId)
+        public UserType Get(int id)
         {
-            return context.UserType.Find(userTypeId);
+            return context.UserType.Find(id);
         }
 
-        public void Remove(int userTypeId)
+        public void Remove(int id)
         {
             UserType tempUserType = new UserType
             {
-                Id = userTypeId
+                Id = id
             };
             context.UserType.Remove(tempUserType);
+            context.SaveChanges();
         }
 
         public void Update(UserType userType)
