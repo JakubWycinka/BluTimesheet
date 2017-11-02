@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BluTimesheet.Services.interfaces
 {
-    interface IActivityService
+    public interface IActivityService
     {
         void Add(Activity activity);
         void Remove(int id);

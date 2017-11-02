@@ -38,7 +38,7 @@ namespace BluTimesheet.Repositories
 
         public void Update(Activity activity)
         {
-            var activityFromDb = context.Activity.SingleOrDefault(activityInDb => activityInDb.Id == activity.Id);
+            var activityFromDb = Get(activity.Id);
             if (activityFromDb != null)
             {                
                 activityFromDb.Name = activity.Name;

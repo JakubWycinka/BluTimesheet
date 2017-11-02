@@ -29,7 +29,7 @@ namespace BluTimesheet.Repositories
 
         public void Update(User user)
         {
-            var userFromDb = context.User.SingleOrDefault(userInDb => userInDb.Id == user.Id);
+            var userFromDb = Get(user.Id);
             if (userFromDb != null)
             {
                 userFromDb.Name = user.Name;
@@ -39,6 +39,27 @@ namespace BluTimesheet.Repositories
                 userFromDb.Email = user.Email;                
                 context.SaveChanges();
             }
+        }
+
+        public void ResetPassword(int id)
+        {
+            var userFromDb = Get(id);
+            if (userFromDb != null)
+            {
+                userFromDb.Password = String.Empty;
+                context.SaveChanges();
+            }
+        }
+
+        public void SetPassword(User user)
+        {
+            var userFromDb = Get(user.Id);
+            if (userFromDb != null)
+            {
+                userFromDb.Password = user.Password;
+                context.SaveChanges();
+            }
+
         }
 
         public void Remove(int id)

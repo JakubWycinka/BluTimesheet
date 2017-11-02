@@ -58,7 +58,7 @@ namespace BluTimesheet.Repositories
 
         public void Approve(DailyActivity dailyActivity)
         {
-            var activityFromDb = context.DailyActivity.SingleOrDefault(activityInDb => activityInDb.Id == dailyActivity.Id);
+            var activityFromDb = Get(dailyActivity.Id);
             if (activityFromDb != null)
             {
                 activityFromDb.ApprovedByManager = true;

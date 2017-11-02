@@ -39,7 +39,7 @@ namespace BluTimesheet.Repositories
 
         public void Update(UserType userType)
         {
-            var userTypeFromDb = context.UserType.SingleOrDefault(userTypeInDb => userTypeInDb.Id == userType.Id);
+            var userTypeFromDb = Get(userType.Id);
             if (userTypeFromDb != null)
             {
 

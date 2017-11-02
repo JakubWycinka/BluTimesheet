@@ -20,16 +20,63 @@ namespace BluTimesheet.Controllers
         }
 
         [Route("api/user/register")]
-        [HttpPost]
-        public HttpResponseMessage Register(User user)
+        public IHttpActionResult PostUser(User user)
         {
             userService.Add(user);
+            return Ok();
+        }
 
-            return Request.CreateResponse(HttpStatusCode.OK);
+        public IEnumerable<User> GetUser()
+        {
+            return userService.GetAll();
+        }
+
+        public IHttpActionResult GetUser(int id)
+        {
+            var user = userService.Get(id);
+            if (user != null)
+            {
+                return Ok(user);
+            }
+            else
+            {
+                return NotFound();
+            }
 
         }
 
-       
+        public IHttpActionResult PutUser(User user)
+        {
+            userService.Update(user);
+            return Ok();
+        }
+
+        public IHttpActionResult DeleteUser(int id)
+        {
+            userService.Remove(id);
+            return Ok();
+        }
+
+        [Route("api/user/password/reset")]
+        [HttpPut]
+        public IHttpActionResult ResetPassword(int id)
+        {
+            userService.ResetPassword(id);
+            return Ok();
+        }
+
+        [Route("api/user/password/set")]
+        [HttpPut]
+        public IHttpActionResult SetPassword(User user)
+        {
+            userService.SetPassword(user);
+            return Ok();
+        }
+
+
+
+
+
 
     }
 }

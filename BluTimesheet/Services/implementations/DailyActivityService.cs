@@ -26,6 +26,7 @@ namespace BluTimesheet.Services.implementations
         public void Approve(DailyActivity dailyActivity)
         {
             dailyActivityRepository.Approve(dailyActivity);
+            
         }
 
         public IEnumerable<DailyActivity> GetAll()

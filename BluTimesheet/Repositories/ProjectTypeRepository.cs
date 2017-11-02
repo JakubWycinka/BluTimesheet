@@ -39,7 +39,7 @@ namespace BluTimesheet.Repositories
 
         public void Update(ProjectType projectType)
         {
-            var projectTypeFromDb = context.ProjectType.SingleOrDefault(projectTypeInDb => projectTypeInDb.Id == projectType.Id);
+            var projectTypeFromDb = Get(projectType.Id);
             if (projectTypeFromDb != null)
             {
 
