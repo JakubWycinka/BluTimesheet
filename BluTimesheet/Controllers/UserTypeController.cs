@@ -45,6 +45,7 @@ namespace BluTimesheet.Controllers
 
         public IHttpActionResult PutUserType(UserType userType)
         {
+            
             userTypeService.Update(userType);
             return Ok();
         }

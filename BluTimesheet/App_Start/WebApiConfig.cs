@@ -11,6 +11,7 @@ using System.Web.Http;
 using Unity;
 using Unity.Lifetime;
 using Unity.AspNet.WebApi;
+using BluTimesheet.Utils;
 
 namespace BluTimesheet
 {
@@ -28,7 +29,8 @@ namespace BluTimesheet
             container.RegisterType<IUserTypeService, UserTypeService>();
             config.DependencyResolver = new UnityDependencyResolver(container);
 
-
+            config.Filters.Add(new ValidateModelAttribute());
+            //config.Filters.Add(new AuthorizeAttribute());
             config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

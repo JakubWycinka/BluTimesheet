@@ -52,9 +52,7 @@ namespace BluTimesheet.Migrations
 
             DailyActivity dailyActivity1 = new DailyActivity
             {
-                BeginingHour = 7, BeginingMinute = 0, EndingHour = 15, EndingMinute= 0, Date = 
-                
-
+                Begining = DateTime.Today, Project = project1, Activity = activity1
             };
 
 
@@ -62,7 +60,9 @@ namespace BluTimesheet.Migrations
             context.ProjectType.AddOrUpdate(p => p.Id, projectType1, projectType2);
             context.Project.AddOrUpdate(p => p.Id, project1);
             context.UserType.AddOrUpdate(u => u.Id, userTypeUser, userTypeAdmin);
-            context.User.AddOrUpdate(u => u.Id,user1,user2);      
+            context.User.AddOrUpdate(u => u.Id,user1,user2);
+            context.Activity.AddOrUpdate(d => d.Id, activity1, activity2, activity3, activity4, activity5, activity6);
+            context.DailyActivity.AddOrUpdate(d => d.Id, dailyActivity1);
 
         }
     }

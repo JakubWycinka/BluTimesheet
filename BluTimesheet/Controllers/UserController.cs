@@ -64,7 +64,7 @@ namespace BluTimesheet.Controllers
             userService.ResetPassword(id);
             return Ok();
         }
-
+        
         [Route("api/user/password/set")]
         [HttpPut]
         public IHttpActionResult SetPassword(User user)
@@ -72,6 +72,8 @@ namespace BluTimesheet.Controllers
             userService.SetPassword(user);
             return Ok();
         }
+
+
 
 
 
