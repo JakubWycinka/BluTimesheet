@@ -14,5 +14,6 @@ namespace BluTimesheet.Services.interfaces
         UserType Get(int id);
         void Update(UserType userType);
         IEnumerable<UserType> GetAll();
+        IEnumerable<User> GetUsers(int id);
     }
 }

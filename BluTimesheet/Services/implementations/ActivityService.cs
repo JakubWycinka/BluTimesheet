@@ -41,5 +41,10 @@ namespace BluTimesheet.Services.implementations
         {
             activityRepository.Update(activity);
         }
+
+        public IEnumerable<DailyActivity> GetDailyActivities(int id)
+        {
+            return Get(id).DailyActivity;
+        }
     }
 }

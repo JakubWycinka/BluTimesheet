@@ -29,6 +29,11 @@ namespace BluTimesheet.Services.implementations
             return projectRepository.GetAll();
         }
 
+        public IEnumerable<DailyActivity> GetDailyActivities(int id)
+        {
+            return Get(id).DailyActivity;
+        }
+
         public void Remove(int id)
         {
             projectRepository.Remove(id);

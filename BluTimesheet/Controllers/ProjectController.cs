@@ -25,6 +25,12 @@ namespace BluTimesheet.Controllers
             return Ok();
         }
 
+        [Route("api/project/dailyactivities")]
+        public IEnumerable<DailyActivity> GetActivities(int id)
+        {
+            return projectService.GetDailyActivities(id);
+        }
+
         public IEnumerable<Project> GetProjects()
         {
             return projectService.GetAll();

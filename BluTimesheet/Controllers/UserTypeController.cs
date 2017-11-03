@@ -55,5 +55,11 @@ namespace BluTimesheet.Controllers
             userTypeService.Remove(id);
             return Ok();
         }
+
+        [Route("api/usertype/projects")]
+        public IEnumerable<User> GetUsers(int id)
+        {
+            return userTypeService.GetUsers(id);
+        }
     }
 }

@@ -14,5 +14,6 @@ namespace BluTimesheet.Services.interfaces
         Activity Get(int id);
         void Update(Activity activity);
         IEnumerable<Activity> GetAll();
+        IEnumerable<DailyActivity> GetDailyActivities(int id);
     }
 }

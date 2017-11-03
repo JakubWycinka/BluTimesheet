@@ -25,9 +25,16 @@ namespace BluTimesheet.Controllers
             return Ok();
         }
 
+        
         public IEnumerable<Activity> GetActivities()
         {
             return activityService.GetAll();
+        }
+
+        [Route("api/activity/dailyactivities")]
+        public IEnumerable<DailyActivity> GetActivities(int id)
+        {
+            return activityService.GetDailyActivities(id);
         }
 
         public IHttpActionResult GetActivity(int id)

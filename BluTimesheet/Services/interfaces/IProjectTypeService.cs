@@ -14,5 +14,6 @@ namespace BluTimesheet.Services.interfaces
         ProjectType Get(int id);
         void Update(ProjectType projectType);
         IEnumerable<ProjectType> GetAll();
+        IEnumerable<Project> GetProjects(int id);
     }
 }

@@ -33,6 +33,11 @@ namespace BluTimesheet.Services.implementations
             return userTypeRepository.GetAll();
         }
 
+        public IEnumerable<User> GetUsers(int id)
+        {
+            return Get(id).User;
+        }
+
         public void Remove(int id)
         {
             userTypeRepository.Remove(id);
