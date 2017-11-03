@@ -185,9 +185,9 @@
     <Compile Include="Controllers\ProjectTypeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserTypeController.cs" />
-    <Compile Include="Migrations\201710271119266_mymigration.cs" />
-    <Compile Include="Migrations\201710271119266_mymigration.Designer.cs">
-      <DependentUpon>201710271119266_mymigration.cs</DependentUpon>
+    <Compile Include="Migrations\201711031102580_Initial.cs" />
+    <Compile Include="Migrations\201711031102580_Initial.Designer.cs">
+      <DependentUpon>201711031102580_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ProjectType.cs" />
@@ -224,8 +224,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710271119266_mymigration.resx">
-      <DependentUpon>201710271119266_mymigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711031102580_Initial.resx">
+      <DependentUpon>201711031102580_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

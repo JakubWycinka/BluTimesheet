@@ -9,12 +9,18 @@ namespace BluTimesheet.Models
 {
     public class Project 
     {
+        public Project()
+        {
+            DailyActivity = new HashSet<DailyActivity>();
+        }
+
         [Key]
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        [ForeignKey("Id")]
+
         public ProjectType ProjectType { get; set; }
 
+        public ICollection<DailyActivity> DailyActivity { get; set; }
     }
 }

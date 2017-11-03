@@ -9,6 +9,11 @@ namespace BluTimesheet.Models
 {
     public class User
     {
+        public User()
+        {
+            DailyActivity = new SortedSet<DailyActivity>();
+        }
+
         [Key]
         public int Id { get; set; }
         [Required]
@@ -19,9 +24,9 @@ namespace BluTimesheet.Models
         public string Password { get; set; }
         [Required]
         public string Email { get; set; }
-        [ForeignKey("Id")]
+
         public UserType UserType { get; set; }
 
-        public ICollection<DailyActivity> DailyActivities { get; set; }
+        public ICollection<DailyActivity> DailyActivity { get; set; }
     }      
 }

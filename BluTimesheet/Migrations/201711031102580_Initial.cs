@@ -3,7 +3,7 @@ namespace BluTimesheet.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class mymigration : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -12,7 +12,7 @@ namespace BluTimesheet.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -21,20 +21,17 @@ namespace BluTimesheet.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        BeginingHour = c.Int(nullable: false),
-                        BeginingMinute = c.Int(nullable: false),
-                        EndingHour = c.Int(nullable: false),
-                        EndingMinute = c.Int(nullable: false),
-                        Date = c.DateTime(nullable: false),
+                        Begining = c.DateTime(nullable: false),
+                        End = c.DateTime(),
                         ApprovedByManager = c.Boolean(nullable: false),
-                        Activity_Id = c.Int(),
+                        Activity_Id = c.Int(nullable: false),
                         Project_Id = c.Int(),
-                        User_Id = c.Int(),
+                        User_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Activities", t => t.Activity_Id)
+                .ForeignKey("dbo.Activities", t => t.Activity_Id, cascadeDelete: true)
                 .ForeignKey("dbo.Projects", t => t.Project_Id)
-                .ForeignKey("dbo.Users", t => t.User_Id)
+                .ForeignKey("dbo.Users", t => t.User_Id, cascadeDelete: true)
                 .Index(t => t.Activity_Id)
                 .Index(t => t.Project_Id)
                 .Index(t => t.User_Id);
@@ -44,7 +41,7 @@ namespace BluTimesheet.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                         ProjectType_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
@@ -56,7 +53,7 @@ namespace BluTimesheet.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -65,10 +62,10 @@ namespace BluTimesheet.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Surname = c.String(),
+                        Name = c.String(nullable: false),
+                        Surname = c.String(nullable: false),
                         Password = c.String(),
-                        Email = c.String(),
+                        Email = c.String(nullable: false),
                         UserType_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
@@ -80,7 +77,7 @@ namespace BluTimesheet.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Role = c.String(),
+                        Role = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -88,10 +85,10 @@ namespace BluTimesheet.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Users", "UserType_Id", "dbo.UserTypes");
             DropForeignKey("dbo.DailyActivities", "User_Id", "dbo.Users");
-            DropForeignKey("dbo.DailyActivities", "Project_Id", "dbo.Projects");
+            DropForeignKey("dbo.Users", "UserType_Id", "dbo.UserTypes");
             DropForeignKey("dbo.Projects", "ProjectType_Id", "dbo.ProjectTypes");
+            DropForeignKey("dbo.DailyActivities", "Project_Id", "dbo.Projects");
             DropForeignKey("dbo.DailyActivities", "Activity_Id", "dbo.Activities");
             DropIndex("dbo.Users", new[] { "UserType_Id" });
             DropIndex("dbo.Projects", new[] { "ProjectType_Id" });

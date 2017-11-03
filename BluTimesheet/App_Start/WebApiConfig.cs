@@ -29,8 +29,12 @@ namespace BluTimesheet
             container.RegisterType<IUserTypeService, UserTypeService>();
             config.DependencyResolver = new UnityDependencyResolver(container);
 
+            //Global validation
             config.Filters.Add(new ValidateModelAttribute());
+
+            //Global Authorization
             //config.Filters.Add(new AuthorizeAttribute());
+
             config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

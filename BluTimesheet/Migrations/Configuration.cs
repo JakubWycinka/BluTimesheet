@@ -10,16 +10,17 @@ namespace BluTimesheet.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(BluTimesheet.Context.TimesheetDbContext context)
         {
-            UserType userTypeUser = new UserType { Role = "user"};
+            UserType userTypeUser = new UserType { Role = "user" };
             UserType userTypeAdmin = new UserType { Role = "admin" };
-            
+
             User user1 = new User
             {
+
                 Name = "Jakub",
                 Surname = "Wycinka",
                 Email = "j.wycinka@blunovation.com",
@@ -29,11 +30,12 @@ namespace BluTimesheet.Migrations
 
             User user2 = new User
             {
+
                 Name = "Krzysztof",
-                Surname = "Kluczyñski",
-                Email = "k.kluczynski@blunovation.com",
+                Surname = "Kluszczyñski",
+                Email = "k.kluszczynski@blunovation.com",
                 Password = "00000",
-                UserType = userTypeAdmin                
+                UserType = userTypeAdmin
             };
 
             ProjectType projectType1 = new ProjectType { Name = "Billable" };
@@ -43,7 +45,7 @@ namespace BluTimesheet.Migrations
             Project project2 = new Project { Name = "Artifex", ProjectType = projectType1 };
 
 
-            Activity activity1 = new Activity { Name = "Working"};
+            Activity activity1 = new Activity { Name = "Working" };
             Activity activity2 = new Activity { Name = "Sickness" };
             Activity activity3 = new Activity { Name = "Holidays" };
             Activity activity4 = new Activity { Name = "Bank Holidays" };
@@ -52,17 +54,21 @@ namespace BluTimesheet.Migrations
 
             DailyActivity dailyActivity1 = new DailyActivity
             {
-                Begining = DateTime.Today, Project = project1, Activity = activity1
+                Begining = DateTime.Now,
+                Project = project1,
+                Activity = activity1,
+                User = user1,
             };
 
 
 
-            context.ProjectType.AddOrUpdate(p => p.Id, projectType1, projectType2);
-            context.Project.AddOrUpdate(p => p.Id, project1);
-            context.UserType.AddOrUpdate(u => u.Id, userTypeUser, userTypeAdmin);
-            context.User.AddOrUpdate(u => u.Id,user1,user2);
-            context.Activity.AddOrUpdate(d => d.Id, activity1, activity2, activity3, activity4, activity5, activity6);
-            context.DailyActivity.AddOrUpdate(d => d.Id, dailyActivity1);
+            context.ProjectType.AddOrUpdate(x => x.Name, projectType1, projectType2);
+            context.Project.AddOrUpdate(x => x.Name, project1, project2);
+            context.UserType.AddOrUpdate(x => x.Role, userTypeUser, userTypeAdmin);
+            context.User.AddOrUpdate(x => x.Name, user1, user2);
+            context.Activity.AddOrUpdate(x => x.Name, activity1, activity2, activity3, activity4, activity5, activity6);
+            context.DailyActivity.AddOrUpdate(x => x.End, dailyActivity1);
+            context.SaveChanges();
 
         }
     }

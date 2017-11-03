@@ -35,7 +35,7 @@ namespace BluTimesheet.Repositories
                 userFromDb.Name = user.Name;
                 userFromDb.Surname = user.Surname;
                 userFromDb.UserType = user.UserType;
-                userFromDb.DailyActivities = user.DailyActivities;
+                userFromDb.DailyActivity = user.DailyActivity;
                 userFromDb.Email = user.Email;                
                 context.SaveChanges();
             }
@@ -75,7 +75,7 @@ namespace BluTimesheet.Repositories
         public ICollection<DailyActivity> GetUserActivities(User user)
         {
           
-            return context.User.Find(user).DailyActivities;
+            return context.User.Find(user).DailyActivity;
 
         }
 
