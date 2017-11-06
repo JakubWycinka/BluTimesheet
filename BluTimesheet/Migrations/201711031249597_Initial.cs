@@ -24,14 +24,14 @@ namespace BluTimesheet.Migrations
                         Begining = c.DateTime(nullable: false),
                         End = c.DateTime(),
                         ApprovedByManager = c.Boolean(nullable: false),
-                        Activity_Id = c.Int(nullable: false),
+                        Activity_Id = c.Int(),
                         Project_Id = c.Int(),
-                        User_Id = c.Int(nullable: false),
+                        User_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Activities", t => t.Activity_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Activities", t => t.Activity_Id)
                 .ForeignKey("dbo.Projects", t => t.Project_Id)
-                .ForeignKey("dbo.Users", t => t.User_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.User_Id)
                 .Index(t => t.Activity_Id)
                 .Index(t => t.Project_Id)
                 .Index(t => t.User_Id);
@@ -85,8 +85,8 @@ namespace BluTimesheet.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.DailyActivities", "User_Id", "dbo.Users");
             DropForeignKey("dbo.Users", "UserType_Id", "dbo.UserTypes");
+            DropForeignKey("dbo.DailyActivities", "User_Id", "dbo.Users");
             DropForeignKey("dbo.Projects", "ProjectType_Id", "dbo.ProjectTypes");
             DropForeignKey("dbo.DailyActivities", "Project_Id", "dbo.Projects");
             DropForeignKey("dbo.DailyActivities", "Activity_Id", "dbo.Activities");

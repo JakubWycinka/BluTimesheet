@@ -25,8 +25,10 @@ namespace BluTimesheet.Migrations
                 Surname = "Wycinka",
                 Email = "j.wycinka@blunovation.com",
                 Password = "00000",
-                UserType = userTypeUser
+                UserType = userTypeUser,
+
             };
+
 
             User user2 = new User
             {
@@ -52,6 +54,7 @@ namespace BluTimesheet.Migrations
             Activity activity5 = new Activity { Name = "Event" };
             Activity activity6 = new Activity { Name = "Other" };
 
+
             DailyActivity dailyActivity1 = new DailyActivity
             {
                 Begining = DateTime.Now,
@@ -59,6 +62,9 @@ namespace BluTimesheet.Migrations
                 Activity = activity1,
                 User = user1,
             };
+
+
+
 
 
 

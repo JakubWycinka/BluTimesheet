@@ -19,11 +19,11 @@ namespace BluTimesheet.Services
             userRepository.Add(user);
         }
 
-        public IEnumerable<DailyActivity> GetUserActivites(User user)
+        public IEnumerable<DailyActivity> GetUserActivites(int id)
         {
-            return userRepository.GetUserActivities(user);
+            return Get(id).DailyActivity;
         }
-        
+
         public User Get(int id)
         {
             return userRepository.Get(id);

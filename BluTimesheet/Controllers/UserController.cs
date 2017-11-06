@@ -57,7 +57,7 @@ namespace BluTimesheet.Controllers
             return Ok();
         }
 
-        [Route("api/user/password/reset")]
+        [Route("api/user/{id}/password/reset")]
         [HttpPut]
         public IHttpActionResult ResetPassword(int id)
         {
@@ -65,12 +65,18 @@ namespace BluTimesheet.Controllers
             return Ok();
         }
         
-        [Route("api/user/password/set")]
+        [Route("api/user/{id}/password/set")]
         [HttpPut]
         public IHttpActionResult SetPassword(User user)
         {
             userService.SetPassword(user);
             return Ok();
+        }
+
+        [Route("api/user/{id}/dailyactivities")]
+        public IEnumerable<DailyActivity> GetDailyActivities(int id)
+        {
+            return userService.GetUserActivites(id);
         }
 
 

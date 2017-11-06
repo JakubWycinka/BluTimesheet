@@ -10,7 +10,8 @@ namespace BluTimesheet.Context
     public class TimesheetDbContext : DbContext
     {
         public TimesheetDbContext() : base("TimesheetDbContext")
-        {            
+        {
+            this.Configuration.LazyLoadingEnabled = true;
         }
         public DbSet<DailyActivity> DailyActivity { get; set; }
         public DbSet<Activity> Activity { get; set; }

@@ -32,6 +32,11 @@ namespace BluTimesheet.Repositories
             return context.DailyActivity.AsEnumerable<DailyActivity>();
         }
 
+        public IEnumerable<DailyActivity> GetUserActivites(int id)
+        {
+            return context.DailyActivity.ToList().Where(x => x.User.Name == "Jozek");
+        }
+
         public void Update(DailyActivity dailyActivity)
         {
             var activityFromDb = context.DailyActivity.SingleOrDefault(activityInDb => activityInDb.Id == dailyActivity.Id);

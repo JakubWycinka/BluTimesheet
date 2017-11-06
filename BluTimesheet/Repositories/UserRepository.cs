@@ -72,16 +72,11 @@ namespace BluTimesheet.Repositories
             context.SaveChanges();
         }
 
-        public ICollection<DailyActivity> GetUserActivities(User user)
-        {
-          
-            return context.User.Find(user).DailyActivity;
-
-        }
-
         public IEnumerable<User> GetAll()
         {
-            return context.User.AsEnumerable<User>();
+            return context.User.Include("UserType")
+                
+                .AsEnumerable<User>();
         }
 
         protected void Dispose(bool disposing)
