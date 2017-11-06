@@ -1,23 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BluTimesheet.Models
 {
     public class Activity
     {
-        public Activity()
-        {
-            DailyActivity = new HashSet<DailyActivity>();
-        }
-
         [Key]
         public int Id { get; set; }
         [Required]
-        public string Name { get; set; }
+        public DateTime? Begining { get; set; }
 
-        public ICollection<DailyActivity> DailyActivity { get; set; }
+        public DateTime? End { get; set; }
+
+        [Required]
+        public ActivityType ActivityType { get; set; }
+          
+        public Project Project { get; set; }
+
+        public bool ApprovedByManager { get; set; }
+
+        [Required]
+        public User User { get; set; }
+
+        
+
+
     }
 }

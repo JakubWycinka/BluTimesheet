@@ -11,10 +11,10 @@ namespace BluTimesheet.Context
     {
         public TimesheetDbContext() : base("TimesheetDbContext")
         {
-            this.Configuration.LazyLoadingEnabled = true;
+            this.Configuration.LazyLoadingEnabled = false;
         }
-        public DbSet<DailyActivity> DailyActivity { get; set; }
         public DbSet<Activity> Activity { get; set; }
+        public DbSet<ActivityType> ActivityType { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<UserType> UserType { get; set; }
         public DbSet<Project> Project { get; set; }

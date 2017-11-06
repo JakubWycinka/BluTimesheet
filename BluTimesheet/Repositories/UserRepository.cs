@@ -35,7 +35,6 @@ namespace BluTimesheet.Repositories
                 userFromDb.Name = user.Name;
                 userFromDb.Surname = user.Surname;
                 userFromDb.UserType = user.UserType;
-                userFromDb.DailyActivity = user.DailyActivity;
                 userFromDb.Email = user.Email;                
                 context.SaveChanges();
             }
@@ -74,9 +73,7 @@ namespace BluTimesheet.Repositories
 
         public IEnumerable<User> GetAll()
         {
-            return context.User.Include("UserType")
-                
-                .AsEnumerable<User>();
+            return context.User.Include("UserType").AsEnumerable();
         }
 
         protected void Dispose(bool disposing)

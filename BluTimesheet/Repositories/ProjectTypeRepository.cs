@@ -51,7 +51,7 @@ namespace BluTimesheet.Repositories
 
         public IEnumerable<ProjectType> GetAll()
         {
-            return context.ProjectType.AsEnumerable<ProjectType>();
+            return context.ProjectType.AsEnumerable();
         }
 
         protected void Dispose(bool disposing)

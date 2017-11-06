@@ -11,9 +11,9 @@ namespace BluTimesheet.Controllers.interfaces
         void Add(User user);
         void Remove(int id);
         User Get(int id);
-        void Update(User user);
+        void Update(User user);        
+        IEnumerable<User> GetUsersByUserType(int id);
         IEnumerable<User> GetAll();
-        IEnumerable<DailyActivity> GetUserActivites(int id);
         void SetPassword(User user);
         void ResetPassword(int id);
     }

@@ -13,6 +13,6 @@ namespace BluTimesheet.Services.interfaces
         Project Get(int id);
         void Update(Project project);
         IEnumerable<Project> GetAll();
-        IEnumerable<DailyActivity> GetDailyActivities(int id);
+        IEnumerable<Project> GetProjectsByProjectType(int id);
     }
 }

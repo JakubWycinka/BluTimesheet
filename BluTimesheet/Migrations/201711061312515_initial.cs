@@ -3,7 +3,7 @@ namespace BluTimesheet.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -12,29 +12,29 @@ namespace BluTimesheet.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.DailyActivities",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
                         Begining = c.DateTime(nullable: false),
                         End = c.DateTime(),
                         ApprovedByManager = c.Boolean(nullable: false),
-                        Activity_Id = c.Int(),
+                        ActivityType_Id = c.Int(nullable: false),
                         Project_Id = c.Int(),
-                        User_Id = c.Int(),
+                        User_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Activities", t => t.Activity_Id)
+                .ForeignKey("dbo.ActivityTypes", t => t.ActivityType_Id, cascadeDelete: true)
                 .ForeignKey("dbo.Projects", t => t.Project_Id)
-                .ForeignKey("dbo.Users", t => t.User_Id)
-                .Index(t => t.Activity_Id)
+                .ForeignKey("dbo.Users", t => t.User_Id, cascadeDelete: true)
+                .Index(t => t.ActivityType_Id)
                 .Index(t => t.Project_Id)
                 .Index(t => t.User_Id);
+            
+            CreateTable(
+                "dbo.ActivityTypes",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Projects",
@@ -85,21 +85,21 @@ namespace BluTimesheet.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.Activities", "User_Id", "dbo.Users");
             DropForeignKey("dbo.Users", "UserType_Id", "dbo.UserTypes");
-            DropForeignKey("dbo.DailyActivities", "User_Id", "dbo.Users");
+            DropForeignKey("dbo.Activities", "Project_Id", "dbo.Projects");
             DropForeignKey("dbo.Projects", "ProjectType_Id", "dbo.ProjectTypes");
-            DropForeignKey("dbo.DailyActivities", "Project_Id", "dbo.Projects");
-            DropForeignKey("dbo.DailyActivities", "Activity_Id", "dbo.Activities");
+            DropForeignKey("dbo.Activities", "ActivityType_Id", "dbo.ActivityTypes");
             DropIndex("dbo.Users", new[] { "UserType_Id" });
             DropIndex("dbo.Projects", new[] { "ProjectType_Id" });
-            DropIndex("dbo.DailyActivities", new[] { "User_Id" });
-            DropIndex("dbo.DailyActivities", new[] { "Project_Id" });
-            DropIndex("dbo.DailyActivities", new[] { "Activity_Id" });
+            DropIndex("dbo.Activities", new[] { "User_Id" });
+            DropIndex("dbo.Activities", new[] { "Project_Id" });
+            DropIndex("dbo.Activities", new[] { "ActivityType_Id" });
             DropTable("dbo.UserTypes");
             DropTable("dbo.Users");
             DropTable("dbo.ProjectTypes");
             DropTable("dbo.Projects");
-            DropTable("dbo.DailyActivities");
+            DropTable("dbo.ActivityTypes");
             DropTable("dbo.Activities");
         }
     }

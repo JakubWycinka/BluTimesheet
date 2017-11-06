@@ -10,7 +10,7 @@ namespace BluTimesheet.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(BluTimesheet.Context.TimesheetDbContext context)
@@ -47,19 +47,19 @@ namespace BluTimesheet.Migrations
             Project project2 = new Project { Name = "Artifex", ProjectType = projectType1 };
 
 
-            Activity activity1 = new Activity { Name = "Working" };
-            Activity activity2 = new Activity { Name = "Sickness" };
-            Activity activity3 = new Activity { Name = "Holidays" };
-            Activity activity4 = new Activity { Name = "Bank Holidays" };
-            Activity activity5 = new Activity { Name = "Event" };
-            Activity activity6 = new Activity { Name = "Other" };
+            ActivityType activity1 = new ActivityType { Name = "Working" };
+            ActivityType activity2 = new ActivityType { Name = "Sickness" };
+            ActivityType activity3 = new ActivityType { Name = "Holidays" };
+            ActivityType activity4 = new ActivityType { Name = "Bank Holidays" };
+            ActivityType activity5 = new ActivityType { Name = "Event" };
+            ActivityType activity6 = new ActivityType { Name = "Other" };
 
 
-            DailyActivity dailyActivity1 = new DailyActivity
+            Activity dailyActivity1 = new Activity
             {
                 Begining = DateTime.Now,
                 Project = project1,
-                Activity = activity1,
+                ActivityType = activity1,
                 User = user1,
             };
 
@@ -72,8 +72,8 @@ namespace BluTimesheet.Migrations
             context.Project.AddOrUpdate(x => x.Name, project1, project2);
             context.UserType.AddOrUpdate(x => x.Role, userTypeUser, userTypeAdmin);
             context.User.AddOrUpdate(x => x.Name, user1, user2);
-            context.Activity.AddOrUpdate(x => x.Name, activity1, activity2, activity3, activity4, activity5, activity6);
-            context.DailyActivity.AddOrUpdate(x => x.End, dailyActivity1);
+            context.ActivityType.AddOrUpdate(x => x.Name, activity1, activity2, activity3, activity4, activity5, activity6);
+            context.Activity.AddOrUpdate(x => x.End, dailyActivity1);
             context.SaveChanges();
 
         }

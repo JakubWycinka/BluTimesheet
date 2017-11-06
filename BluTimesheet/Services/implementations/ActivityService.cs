@@ -10,6 +10,7 @@ namespace BluTimesheet.Services.implementations
 {
     public class ActivityService : IActivityService
     {
+
         private readonly ActivityRepository activityRepository;
 
         public ActivityService(ActivityRepository activityRepository)
@@ -17,9 +18,15 @@ namespace BluTimesheet.Services.implementations
             this.activityRepository = activityRepository;
         }
 
-        public void Add(Activity activity)
+        public void Add(Activity dailyActivity)
         {
-            activityRepository.Add(activity);
+            activityRepository.Add(dailyActivity);
+        }
+
+        public void Approve(Activity dailyActivity)
+        {
+            activityRepository.Approve(dailyActivity);
+            
         }
 
         public IEnumerable<Activity> GetAll()
@@ -37,14 +44,24 @@ namespace BluTimesheet.Services.implementations
             activityRepository.Remove(id);
         }
 
-        public void Update(Activity activity)
+        public void Update(Activity dailyActivity)
         {
-            activityRepository.Update(activity);
+            activityRepository.Update(dailyActivity);
         }
 
-        public IEnumerable<DailyActivity> GetDailyActivities(int id)
+        public IEnumerable<Activity> GetActivitesByUser(int id)
         {
-            return Get(id).DailyActivity;
+            return activityRepository.GetActivitesByUser(id);
+        }
+
+        public IEnumerable<Activity> GetActivitesByProject(int id)
+        {
+            return activityRepository.GetActivitesByProject(id);
+        }
+
+        public IEnumerable<Activity> GetActivitesByActivityType(int id)
+        {
+            return activityRepository.GetActivitesByActivityType(id);
         }
     }
 }

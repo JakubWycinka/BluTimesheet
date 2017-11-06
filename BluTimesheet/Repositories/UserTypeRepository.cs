@@ -51,7 +51,7 @@ namespace BluTimesheet.Repositories
 
         public IEnumerable<UserType> GetAll()
         {
-            return context.UserType.AsEnumerable<UserType>();
+            return context.UserType.AsEnumerable();
         }
 
         protected void Dispose(bool disposing)

@@ -29,9 +29,9 @@ namespace BluTimesheet.Services.implementations
             return projectRepository.GetAll();
         }
 
-        public IEnumerable<DailyActivity> GetDailyActivities(int id)
+        public IEnumerable<Project> GetProjectsByProjectType(int id)
         {
-            return Get(id).DailyActivity;
+            throw new System.NotImplementedException();
         }
 
         public void Remove(int id)

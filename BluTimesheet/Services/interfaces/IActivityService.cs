@@ -12,8 +12,11 @@ namespace BluTimesheet.Services.interfaces
         void Add(Activity activity);
         void Remove(int id);
         Activity Get(int id);
-        void Update(Activity activity);
+        void Update(Activity activity);        
+        void Approve(Activity activity);
         IEnumerable<Activity> GetAll();
-        IEnumerable<DailyActivity> GetDailyActivities(int id);
+        IEnumerable<Activity> GetActivitesByUser(int id);
+        IEnumerable<Activity> GetActivitesByProject(int id);
+        IEnumerable<Activity> GetActivitesByActivityType(int id);
     }
 }

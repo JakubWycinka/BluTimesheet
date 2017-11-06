@@ -3,57 +3,55 @@ using BluTimesheet.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace BluTimesheet.Repositories
 {
-    public class ProjectRepository : IDisposable
+    public class ActivityTypeRepository : IDisposable
     {
         private TimesheetDbContext context;
 
-        public ProjectRepository(TimesheetDbContext context)
+        public ActivityTypeRepository(TimesheetDbContext context)
         {
             this.context = context;
         }
 
-        public void Add(Project project)
+        public void Add(ActivityType activity)
         {
-            context.Project.Add(project);
+            context.ActivityType.Add(activity);
             context.SaveChanges();
         }
 
-        public Project Get(int id)
+        public ActivityType Get(int id)
         {
-            return context.Project.Include("ProjectType").FirstOrDefault(x => x.Id == id);
+            return context.ActivityType.Find(id);
         }
 
         public void Remove(int id)
         {
-            Project tempProject = new Project
+            ActivityType tempActivity = new ActivityType
             {
                 Id = id
             };
-            context.Project.Remove(tempProject);
+            context.ActivityType.Remove(tempActivity);
             context.SaveChanges();
         }
 
-        public void Update(Project project)
+        public void Update(ActivityType activity)
         {
-            var projectFromDb = Get(project.Id);
-            if (projectFromDb != null)
-            {
-                
-                projectFromDb.Name = project.Name;
-                projectFromDb.ProjectType = project.ProjectType;
+            var activityFromDb = Get(activity.Id);
+            if (activityFromDb != null)
+            {                
+                activityFromDb.Name = activity.Name;
                 context.SaveChanges();
             }
 
         }
 
-        public IEnumerable<Project> GetAll()
+        public IEnumerable<ActivityType> GetAll()
         {
-            return context.Project.Include("ProjectType").AsEnumerable();
+            return context.ActivityType.AsEnumerable();
         }
+                
 
         protected void Dispose(bool disposing)
         {

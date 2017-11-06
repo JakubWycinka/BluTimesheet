@@ -3,6 +3,7 @@ using BluTimesheet.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 namespace BluTimesheet.Repositories
 {
@@ -23,7 +24,38 @@ namespace BluTimesheet.Repositories
 
         public Activity Get(int id)
         {
-            return context.Activity.Find(id);
+            return context.Activity.Include("ActivityType").Include("Project").FirstOrDefault(x => x.Id == id);
+        }
+        
+        public IEnumerable<Activity> GetAll()
+        {
+            return context.Activity.Include("ActivityType").Include("Project").AsEnumerable();
+        }
+
+        public IEnumerable<Activity> GetActivitesByUser(int id)
+        {
+            return GetAll().Where(x => x.User.Id == id);
+        }
+        public IEnumerable<Activity> GetActivitesByProject(int id)
+        {
+            return GetAll().Where(x => x.Project.Id == id);
+        }
+        public IEnumerable<Activity> GetActivitesByActivityType(int id)
+        {
+            return GetAll().Where(x => x.ActivityType.Id == id);
+        }
+
+        public void Update(Activity activity)
+        {
+            var activityFromDb = context.Activity.SingleOrDefault(activityInDb => activityInDb.Id == activity.Id);
+            if (activityFromDb != null)
+            {
+                activityFromDb.Begining = activity.Begining;
+                activityFromDb.End = activity.Begining;
+                activityFromDb.ActivityType = activity.ActivityType;
+                activityFromDb.Project = activity.Project;
+                context.SaveChanges();
+            }
         }
 
         public void Remove(int id)
@@ -31,27 +63,21 @@ namespace BluTimesheet.Repositories
             Activity tempActivity = new Activity
             {
                 Id = id
-            };
+        };
+
             context.Activity.Remove(tempActivity);
             context.SaveChanges();
         }
 
-        public void Update(Activity activity)
+        public void Approve(Activity activity)
         {
             var activityFromDb = Get(activity.Id);
             if (activityFromDb != null)
-            {                
-                activityFromDb.Name = activity.Name;
+            {
+                activityFromDb.ApprovedByManager = true;
                 context.SaveChanges();
             }
-
         }
-
-        public IEnumerable<Activity> GetAll()
-        {
-            return context.Activity.AsEnumerable<Activity>();
-        }
-                
 
         protected void Dispose(bool disposing)
         {

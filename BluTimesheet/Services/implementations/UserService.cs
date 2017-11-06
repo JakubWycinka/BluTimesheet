@@ -19,11 +19,6 @@ namespace BluTimesheet.Services
             userRepository.Add(user);
         }
 
-        public IEnumerable<DailyActivity> GetUserActivites(int id)
-        {
-            return Get(id).DailyActivity;
-        }
-
         public User Get(int id)
         {
             return userRepository.Get(id);
@@ -52,6 +47,11 @@ namespace BluTimesheet.Services
         public void ResetPassword(int id)
         {
             userRepository.ResetPassword(id);
+        }
+
+        public IEnumerable<User> GetUsersByUserType(int id)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

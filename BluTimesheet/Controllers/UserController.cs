@@ -73,18 +73,5 @@ namespace BluTimesheet.Controllers
             return Ok();
         }
 
-        [Route("api/user/{id}/dailyactivities")]
-        public IEnumerable<DailyActivity> GetDailyActivities(int id)
-        {
-            return userService.GetUserActivites(id);
-        }
-
-
-
-
-
-
-
-
     }
 }

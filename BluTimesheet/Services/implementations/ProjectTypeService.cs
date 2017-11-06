@@ -32,11 +32,6 @@ namespace BluTimesheet.Services.implementations
             return projectTypeRepository.GetAll();
         }
 
-        public IEnumerable<Project> GetProjects(int id)
-        {
-            return Get(id).Project;
-        }
-
         public void Remove(int id)
         {
             projectTypeRepository.Remove(id);

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace BluTimesheet.Services.interfaces
 {
-    public interface IUserTypeService
+    public interface IActivityTypeService
     {
-        void Add(UserType userType);
+        void Add(ActivityType activityType);
         void Remove(int id);
-        UserType Get(int id);
-        void Update(UserType userType);
-        IEnumerable<UserType> GetAll();
+        ActivityType Get(int id);
+        void Update(ActivityType activityType);
+        IEnumerable<ActivityType> GetAll();
     }
 }

@@ -19,30 +19,38 @@ namespace BluTimesheet.Controllers
         }
 
 
-        public IHttpActionResult PostActivity(Activity project)
+        public IHttpActionResult PostActivity(Activity activity)
         {
-            activityService.Add(project);
+            activityService.Add(activity);
             return Ok();
         }
 
-        
         public IEnumerable<Activity> GetActivities()
         {
             return activityService.GetAll();
         }
 
-        [Route("api/activity/dailyactivities")]
-        public IEnumerable<DailyActivity> GetActivities(int id)
+        public IEnumerable<Activity> GetActivitiesByUser(int id)
         {
-            return activityService.GetDailyActivities(id);
+            return activityService.GetActivitesByUser(id);
+        }
+
+        public IEnumerable<Activity> GetActivitiesByProject(int id)
+        {
+            return activityService.GetActivitesByProject(id);
+        }
+
+        public IEnumerable<Activity> GetActivitiesByActivityType(int id)
+        {
+            return activityService.GetActivitesByActivityType(id);
         }
 
         public IHttpActionResult GetActivity(int id)
         {
-            var activity = activityService.Get(id);
-            if (activity != null)
+            var dailyActivity = activityService.Get(id);
+            if (dailyActivity != null)
             {
-                return Ok(activity);
+                return Ok(dailyActivity);
             }
             else
             {
@@ -57,7 +65,7 @@ namespace BluTimesheet.Controllers
             return Ok();
         }
 
-        public IHttpActionResult DeleteProject(int id)
+        public IHttpActionResult DeleteActivity(int id)
         {
             activityService.Remove(id);
             return Ok();

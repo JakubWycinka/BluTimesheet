@@ -21,8 +21,8 @@ namespace BluTimesheet
         {
             //Dependecy Injection
             var container = new UnityContainer();
+            container.RegisterType<IActivityTypeService, ActivityTypeService>();
             container.RegisterType<IActivityService, ActivityService>();
-            container.RegisterType<IDailyActivityService, DailyActivityService>();
             container.RegisterType<IProjectTypeService, ProjectTypeService>();
             container.RegisterType<IProjectService, ProjectService>();
             container.RegisterType<IUserService, UserService>();

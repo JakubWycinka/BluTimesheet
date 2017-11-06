@@ -56,10 +56,5 @@ namespace BluTimesheet.Controllers
             return Ok();
         }
 
-        [Route("api/usertype/projects")]
-        public IEnumerable<User> GetUsers(int id)
-        {
-            return userTypeService.GetUsers(id);
-        }
     }
 }

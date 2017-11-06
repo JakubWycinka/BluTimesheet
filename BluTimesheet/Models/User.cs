@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,12 +9,7 @@ using System.Web;
 namespace BluTimesheet.Models
 {
     public class User
-    {
-        public User()
-        {
-            DailyActivity = new SortedSet<DailyActivity>();
-        }
-
+    {        
         [Key]
         public int Id { get; set; }
         [Required]
@@ -26,7 +22,5 @@ namespace BluTimesheet.Models
         public string Email { get; set; }
 
         public UserType UserType { get; set; }
-
-        public ICollection<DailyActivity> DailyActivity { get; set; }
     }      
 }

@@ -11,12 +11,10 @@ namespace BluTimesheet.Services.implementations
     public class UserTypeService : IUserTypeService
     {
         private readonly UserTypeRepository userTypeRepository;
-        private readonly UserRepository userRepository;
 
         public UserTypeService(UserTypeRepository userTypeRepository, UserRepository userRepository)
         {
             this.userTypeRepository = userTypeRepository;
-            this.userRepository = userRepository;
         }
 
         public void Add(UserType userType)
@@ -33,11 +31,6 @@ namespace BluTimesheet.Services.implementations
         public IEnumerable<UserType> GetAll()
         {
             return userTypeRepository.GetAll();
-        }
-
-        public IEnumerable<User> GetUsers(int id)
-        {
-            return userRepository.GetAll().Where(x => x.UserType == Get(id));
         }
 
         public void Remove(int id)
