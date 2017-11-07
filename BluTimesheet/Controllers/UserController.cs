@@ -26,9 +26,15 @@ namespace BluTimesheet.Controllers
             return Ok();
         }
 
-        public IEnumerable<User> GetUser()
+        public IEnumerable<User> GetUsers()
         {
             return userService.GetAll();
+        }
+
+        [Route("api/usertype/{id}/users")]
+        public IEnumerable<User> GetUsersByUserType(int id)
+        {
+            return userService.GetUsersByUserType(id);
         }
 
         public IHttpActionResult GetUser(int id)
@@ -72,6 +78,8 @@ namespace BluTimesheet.Controllers
             userService.SetPassword(user);
             return Ok();
         }
+
+        
 
     }
 }

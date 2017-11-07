@@ -55,6 +55,11 @@ namespace BluTimesheet.Repositories
             return context.Project.Include("ProjectType").AsEnumerable();
         }
 
+        public IEnumerable<Project> GetProjectsByProjectType(int id)
+        {
+            return GetAll().Where(x => x.ProjectType.Id == id);
+        }
+
         protected void Dispose(bool disposing)
         {
             if (disposing)

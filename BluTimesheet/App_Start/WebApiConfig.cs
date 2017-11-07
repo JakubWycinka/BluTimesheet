@@ -12,6 +12,8 @@ using Unity;
 using Unity.Lifetime;
 using Unity.AspNet.WebApi;
 using BluTimesheet.Utils;
+using Newtonsoft.Json.Serialization;
+using System.Net.Http.Formatting;
 
 namespace BluTimesheet
 {
@@ -41,6 +43,9 @@ namespace BluTimesheet
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new {id = RouteParameter.Optional}
             );
+
+            var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
+            jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
     }
 }

@@ -29,17 +29,17 @@ namespace BluTimesheet.Controllers
         {
             return activityService.GetAll();
         }
-
+        [Route("api/user/{id}/activities")]
         public IEnumerable<Activity> GetActivitiesByUser(int id)
         {
             return activityService.GetActivitesByUser(id);
         }
-
+        [Route("api/project/{id}/activities")]
         public IEnumerable<Activity> GetActivitiesByProject(int id)
         {
             return activityService.GetActivitesByProject(id);
         }
-
+        [Route("api/activitytype/{id}/activities")]
         public IEnumerable<Activity> GetActivitiesByActivityType(int id)
         {
             return activityService.GetActivitesByActivityType(id);

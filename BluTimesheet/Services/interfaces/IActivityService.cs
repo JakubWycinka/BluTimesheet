@@ -18,5 +18,8 @@ namespace BluTimesheet.Services.interfaces
         IEnumerable<Activity> GetActivitesByUser(int id);
         IEnumerable<Activity> GetActivitesByProject(int id);
         IEnumerable<Activity> GetActivitesByActivityType(int id);
+
+        //int SumOfHoursSpentOnProject(int id);
+        //IDictionary<User,int> SumOfHoursSpentOnProjectPerUser(int id);
     }
 }

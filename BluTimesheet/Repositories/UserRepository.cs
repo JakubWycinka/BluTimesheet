@@ -76,6 +76,11 @@ namespace BluTimesheet.Repositories
             return context.User.Include("UserType").AsEnumerable();
         }
 
+        public IEnumerable<User> GetUsersByType(int id)
+        {
+            return GetAll().Where(x => x.UserType.Id == id);
+        }
+
         protected void Dispose(bool disposing)
         {
             if (disposing)

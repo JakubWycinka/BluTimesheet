@@ -51,7 +51,8 @@ namespace BluTimesheet.Services
 
         public IEnumerable<User> GetUsersByUserType(int id)
         {
-            throw new System.NotImplementedException();
+            return userRepository.GetUsersByType(id);
         }
+
     }
 }

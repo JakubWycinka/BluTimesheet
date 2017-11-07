@@ -24,12 +24,14 @@ namespace BluTimesheet.Repositories
 
         public Activity Get(int id)
         {
-            return context.Activity.Include("ActivityType").Include("Project").FirstOrDefault(x => x.Id == id);
+            return context.Activity.Include("ActivityType").Include("Project")
+                .Include("Project.ProjectType").Include("User").FirstOrDefault(x => x.Id == id);
         }
         
         public IEnumerable<Activity> GetAll()
         {
-            return context.Activity.Include("ActivityType").Include("Project").AsEnumerable();
+            return context.Activity.Include("ActivityType").Include("Project")
+                .Include("Project.ProjectType").Include("User").AsEnumerable();
         }
 
         public IEnumerable<Activity> GetActivitesByUser(int id)
@@ -45,6 +47,7 @@ namespace BluTimesheet.Repositories
             return GetAll().Where(x => x.ActivityType.Id == id);
         }
 
+       
         public void Update(Activity activity)
         {
             var activityFromDb = context.Activity.SingleOrDefault(activityInDb => activityInDb.Id == activity.Id);

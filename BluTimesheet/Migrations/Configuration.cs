@@ -15,8 +15,10 @@ namespace BluTimesheet.Migrations
 
         protected override void Seed(BluTimesheet.Context.TimesheetDbContext context)
         {
-            UserType userTypeUser = new UserType { Role = "user" };
+            UserType userTypeUser = new UserType { Role = "employee" };
             UserType userTypeAdmin = new UserType { Role = "admin" };
+            UserType userTypeManager = new UserType { Role = "manager" };
+            UserType userTypeDirector = new UserType { Role = "director" };
 
             User user1 = new User
             {
@@ -45,6 +47,8 @@ namespace BluTimesheet.Migrations
 
             Project project1 = new Project { Name = "Timesheet", ProjectType = projectType2 };
             Project project2 = new Project { Name = "Artifex", ProjectType = projectType1 };
+            Project project3 = new Project { Name = "DD-PACK", ProjectType = projectType1 };
+            Project project4 = new Project { Name = "IMPAQ", ProjectType = projectType1 };
 
 
             ActivityType activity1 = new ActivityType { Name = "Working" };
@@ -70,7 +74,7 @@ namespace BluTimesheet.Migrations
 
             context.ProjectType.AddOrUpdate(x => x.Name, projectType1, projectType2);
             context.Project.AddOrUpdate(x => x.Name, project1, project2);
-            context.UserType.AddOrUpdate(x => x.Role, userTypeUser, userTypeAdmin);
+            context.UserType.AddOrUpdate(x => x.Role, userTypeUser, userTypeAdmin, userTypeManager, userTypeDirector);
             context.User.AddOrUpdate(x => x.Name, user1, user2);
             context.ActivityType.AddOrUpdate(x => x.Name, activity1, activity2, activity3, activity4, activity5, activity6);
             context.Activity.AddOrUpdate(x => x.End, dailyActivity1);

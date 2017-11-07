@@ -30,6 +30,12 @@ namespace BluTimesheet.Controllers
             return projectService.GetAll();
         }
 
+        [Route("api/projecttype/{id}/projects")]
+        public IEnumerable<Project> GetProjectsByProjectType(int id)
+        {
+            return projectService.GetProjectsByProjectType(id);
+        }
+
         public IHttpActionResult GetProject(int id)
         {
             var project = projectService.Get(id);

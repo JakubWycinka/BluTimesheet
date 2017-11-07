@@ -31,7 +31,7 @@ namespace BluTimesheet.Services.implementations
 
         public IEnumerable<Project> GetProjectsByProjectType(int id)
         {
-            throw new System.NotImplementedException();
+            return projectRepository.GetProjectsByProjectType(id);
         }
 
         public void Remove(int id)
