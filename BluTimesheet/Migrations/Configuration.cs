@@ -10,7 +10,7 @@ namespace BluTimesheet.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(BluTimesheet.Context.TimesheetDbContext context)
@@ -66,12 +66,7 @@ namespace BluTimesheet.Migrations
                 ActivityType = activity1,
                 User = user1,
             };
-
-
-
-
-
-
+            
             context.ProjectType.AddOrUpdate(x => x.Name, projectType1, projectType2);
             context.Project.AddOrUpdate(x => x.Name, project1, project2);
             context.UserType.AddOrUpdate(x => x.Role, userTypeUser, userTypeAdmin, userTypeManager, userTypeDirector);

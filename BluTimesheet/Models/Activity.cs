@@ -14,14 +14,14 @@ namespace BluTimesheet.Models
         public DateTime? End { get; set; }
 
         [Required]
-        public ActivityType ActivityType { get; set; }
+        public virtual ActivityType ActivityType { get; set; }
           
-        public Project Project { get; set; }
+        public virtual Project Project { get; set; }
 
         public bool ApprovedByManager { get; set; }
 
         [Required]
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         
 

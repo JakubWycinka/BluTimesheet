@@ -20,7 +20,7 @@ namespace BluTimesheet.Models
         public string Password { get; set; }
         [Required]
         public string Email { get; set; }
-
-        public UserType UserType { get; set; }
+        
+        public virtual UserType UserType { get; set; }
     }      
 }

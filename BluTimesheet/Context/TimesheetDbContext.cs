@@ -9,9 +9,8 @@ namespace BluTimesheet.Context
 {
     public class TimesheetDbContext : DbContext
     {
-        public TimesheetDbContext() : base("TimesheetDbContext")
+        public TimesheetDbContext() : base()
         {
-            this.Configuration.LazyLoadingEnabled = false;
         }
         public DbSet<Activity> Activity { get; set; }
         public DbSet<ActivityType> ActivityType { get; set; }

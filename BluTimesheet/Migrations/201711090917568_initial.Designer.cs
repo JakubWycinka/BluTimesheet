@@ -13,7 +13,7 @@ namespace BluTimesheet.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201711061312515_initial"; }
+            get { return "201711090917568_initial"; }
         }
         
         string IMigrationMetadata.Source

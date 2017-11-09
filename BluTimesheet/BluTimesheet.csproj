@@ -230,21 +230,25 @@
     <Compile Include="Controllers\ProjectTypeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserTypeController.cs" />
-    <Compile Include="Migrations\201711061312515_initial.cs" />
-    <Compile Include="Migrations\201711061312515_initial.Designer.cs">
-      <DependentUpon>201711061312515_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201711090917568_initial.cs" />
+    <Compile Include="Migrations\201711090917568_initial.Designer.cs">
+      <DependentUpon>201711090917568_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ProjectType.cs" />
+    <Compile Include="Repositories\GenericRepository\GenericRepository.cs" />
+    <Compile Include="Repositories\GenericRepository\IGenericRepository.cs" />
     <Compile Include="Repositories\ProjectTypeRepository.cs" />
     <Compile Include="Services\implementations\ActivityTypeService.cs" />
     <Compile Include="Services\implementations\ActivityService.cs" />
     <Compile Include="Services\implementations\ProjectTypeService.cs" />
+    <Compile Include="Services\implementations\ReportingService.cs" />
     <Compile Include="Services\implementations\UserTypeService.cs" />
     <Compile Include="Services\interfaces\IActivityTypeService.cs" />
     <Compile Include="Services\interfaces\IActivityService.cs" />
     <Compile Include="Services\interfaces\IProjectService.cs" />
     <Compile Include="Services\interfaces\IProjectTypeService.cs" />
+    <Compile Include="Services\interfaces\IReportingService.cs" />
     <Compile Include="Services\interfaces\IUserService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -269,8 +273,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711061312515_initial.resx">
-      <DependentUpon>201711061312515_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711090917568_initial.resx">
+      <DependentUpon>201711090917568_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

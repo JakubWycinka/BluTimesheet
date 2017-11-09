@@ -31,7 +31,7 @@ namespace BluTimesheet.Services.implementations
 
         public IEnumerable<Project> GetProjectsByProjectType(int id)
         {
-            return projectRepository.GetProjectsByProjectType(id);
+            return projectRepository.Search(x => x.ProjectType.Id == id);
         }
 
         public void Remove(int id)

@@ -14,7 +14,7 @@ namespace BluTimesheet.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-
-        public ProjectType ProjectType { get; set; }
+        
+        public virtual ProjectType ProjectType { get; set; }
     }
 }

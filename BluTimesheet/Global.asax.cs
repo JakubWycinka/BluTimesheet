@@ -24,7 +24,7 @@ namespace BluTimesheet
             GlobalConfiguration.Configuration.Formatters
                   .JsonFormatter.SerializerSettings.Re‌​ferenceLoopHandling
                   = ReferenceLoopHandling.Ignore;
-
+            
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }

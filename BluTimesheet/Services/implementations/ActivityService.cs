@@ -51,17 +51,17 @@ namespace BluTimesheet.Services.implementations
 
         public IEnumerable<Activity> GetActivitesByUser(int id)
         {
-            return activityRepository.GetActivitesByUser(id);
+            return activityRepository.Search(x => x.User.Id == id);
         }
 
         public IEnumerable<Activity> GetActivitesByProject(int id)
         {
-            return activityRepository.GetActivitesByProject(id);
+            return activityRepository.Search(x => x.Project.Id == id);
         }
 
         public IEnumerable<Activity> GetActivitesByActivityType(int id)
         {
-            return activityRepository.GetActivitesByActivityType(id);
+            return activityRepository.Search(x => x.ActivityType.Id == id);
         }
     }
 }

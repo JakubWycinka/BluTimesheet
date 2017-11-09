@@ -51,7 +51,7 @@ namespace BluTimesheet.Services
 
         public IEnumerable<User> GetUsersByUserType(int id)
         {
-            return userRepository.GetUsersByType(id);
+            return userRepository.Search(x => x.UserType.Id == id);
         }
 
     }
