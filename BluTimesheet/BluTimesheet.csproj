@@ -228,6 +228,7 @@
     <Compile Include="Controllers\ActivityController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\ProjectTypeController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserTypeController.cs" />
     <Compile Include="Migrations\201711090917568_initial.cs" />
@@ -248,7 +249,7 @@
     <Compile Include="Services\interfaces\IActivityService.cs" />
     <Compile Include="Services\interfaces\IProjectService.cs" />
     <Compile Include="Services\interfaces\IProjectTypeService.cs" />
-    <Compile Include="Services\interfaces\IReportingService.cs" />
+    <Compile Include="Services\interfaces\IReportService.cs" />
     <Compile Include="Services\interfaces\IUserService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
