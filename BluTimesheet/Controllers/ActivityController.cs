@@ -30,7 +30,7 @@ namespace BluTimesheet.Controllers
             return activityService.GetAll();
         }
         [Route("api/user/{id}/activities")]
-        public IEnumerable<Activity> GetActivitiesByUser(int id)
+        public IEnumerable<Activity> GetActivitiesByUser(string id)
         {
             var elo = activityService.GetActivitesByUser(id);
             return activityService.GetActivitesByUser(id);

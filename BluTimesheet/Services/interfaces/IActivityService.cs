@@ -15,7 +15,7 @@ namespace BluTimesheet.Services.interfaces
         void Update(Activity activity);        
         void Approve(Activity activity);
         IEnumerable<Activity> GetAll();
-        IEnumerable<Activity> GetActivitesByUser(int id);
+        IEnumerable<Activity> GetActivitesByUser(string id);
         IEnumerable<Activity> GetActivitesByProject(int id);
         IEnumerable<Activity> GetActivitesByActivityType(int id);
     }

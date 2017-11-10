@@ -239,9 +239,7 @@
       <DependentUpon>201711090917568_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Auth\AccountBindingModels.cs" />
-    <Compile Include="Models\Auth\AccountViewModels.cs" />
-    <Compile Include="Models\Auth\IdentityModels.cs" />
+    <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\ProjectType.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Repositories\GenericRepository\GenericRepository.cs" />
@@ -255,7 +253,6 @@
     <Compile Include="Services\implementations\UserTypeService.cs" />
     <Compile Include="Services\interfaces\IActivityTypeService.cs" />
     <Compile Include="Services\interfaces\IActivityService.cs" />
-    <Compile Include="Services\interfaces\IEncrypter.cs" />
     <Compile Include="Services\interfaces\IProjectService.cs" />
     <Compile Include="Services\interfaces\IProjectTypeService.cs" />
     <Compile Include="Services\interfaces\IReportService.cs" />
@@ -278,6 +275,7 @@
     <Compile Include="Services\implementations\UserService.cs" />
     <Compile Include="Services\interfaces\IUserTypeService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utils\Helper.cs" />
     <Compile Include="Utils\ValidateModelAttribute .cs" />
   </ItemGroup>
   <ItemGroup>

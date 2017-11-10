@@ -49,9 +49,9 @@ namespace BluTimesheet.Services.implementations
             activityRepository.Update(dailyActivity);
         }
 
-        public IEnumerable<Activity> GetActivitesByUser(int id)
+        public IEnumerable<Activity> GetActivitesByUser(string id)
         {
-            return activityRepository.Search(x => x.User.Id == id);
+            return activityRepository.Search(x => x.User.Id.Equals(id));
         }
 
         public IEnumerable<Activity> GetActivitesByProject(int id)

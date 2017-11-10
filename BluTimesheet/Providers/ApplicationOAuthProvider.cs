@@ -1,4 +1,5 @@
-﻿using BluTimesheet.Models.Auth;
+﻿using BluTimesheet.Models;
+using BluTimesheet.Utils;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
@@ -30,7 +31,7 @@ namespace BluTimesheet.Providers
         {
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
-            ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
+            User user = await userManager.FindAsync(context.UserName, context.Password);
 
             if (user == null)
             {
@@ -38,10 +39,10 @@ namespace BluTimesheet.Providers
                 return;
             }
 
-            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
-               OAuthDefaults.AuthenticationType);
-            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
-                CookieAuthenticationDefaults.AuthenticationType);
+            ClaimsIdentity oAuthIdentity = await Helper.GenerateUserIdentityAsync(userManager,
+               OAuthDefaults.AuthenticationType, user);
+            ClaimsIdentity cookiesIdentity = await Helper.GenerateUserIdentityAsync(userManager,
+                CookieAuthenticationDefaults.AuthenticationType, user);
 
             AuthenticationProperties properties = CreateProperties(user.UserName);
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);

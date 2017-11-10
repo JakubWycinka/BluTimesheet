@@ -39,16 +39,6 @@ namespace BluTimesheet.Services
             userRepository.Update(user);
         }
 
-        public void SetPassword(User user)
-        {
-            userRepository.SetPassword(user);
-        }
-
-        public void ResetPassword(int id)
-        {
-            userRepository.ResetPassword(id);
-        }
-
         public IEnumerable<User> GetUsersByUserType(int id)
         {
             return userRepository.Search(x => x.UserType.Id == id);

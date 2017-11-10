@@ -14,17 +14,5 @@ namespace BluTimesheet.Repositories
         {
 
         }
-
-        public void SetPassword(User user)
-        {
-            Update(user);
-        }
-
-        public void ResetPassword(int id)
-        {
-            var user = Get(id);
-            user.Password = "";
-            Save();
-        }
     }
 }

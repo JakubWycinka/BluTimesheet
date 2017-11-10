@@ -1,4 +1,5 @@
 ﻿using BluTimesheet.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,7 +8,7 @@ using System.Web;
 
 namespace BluTimesheet.Context
 {
-    public class TimesheetDbContext : DbContext
+    public class TimesheetDbContext : IdentityDbContext
     {
         public TimesheetDbContext() : base()
         {
@@ -18,11 +19,20 @@ namespace BluTimesheet.Context
         public DbSet<UserType> UserType { get; set; }
         public DbSet<Project> Project { get; set; }
         public DbSet<ProjectType> ProjectType { get; set; }
-
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            Database.SetInitializer<TimesheetDbContext>(null);
             base.OnModelCreating(modelBuilder);
+            
+            modelBuilder.Entity<IdentityUser>()
+                .ToTable("Users");
+            modelBuilder.Entity<User>()
+                .ToTable("Users");
+        }
+
+        public static TimesheetDbContext Create()
+        {
+            return new TimesheetDbContext();
         }
     }
 }

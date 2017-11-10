@@ -26,7 +26,6 @@ namespace BluTimesheet.Migrations
                 Name = "Jakub",
                 Surname = "Wycinka",
                 Email = "j.wycinka@blunovation.com",
-                Password = "00000",
                 UserType = userTypeUser,
 
             };
@@ -38,7 +37,6 @@ namespace BluTimesheet.Migrations
                 Name = "Krzysztof",
                 Surname = "Kluszczyñski",
                 Email = "k.kluszczynski@blunovation.com",
-                Password = "00000",
                 UserType = userTypeAdmin
             };
 

@@ -62,24 +62,5 @@ namespace BluTimesheet.Controllers
             userService.Remove(id);
             return Ok();
         }
-
-        [Route("api/user/{id}/password/reset")]
-        [HttpPut]
-        public IHttpActionResult ResetPassword(int id)
-        {
-            userService.ResetPassword(id);
-            return Ok();
-        }
-        
-        [Route("api/user/{id}/password/set")]
-        [HttpPut]
-        public IHttpActionResult SetPassword(User user)
-        {
-            userService.SetPassword(user);
-            return Ok();
-        }
-
-        
-
     }
 }

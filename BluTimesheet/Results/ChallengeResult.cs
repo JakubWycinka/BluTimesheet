@@ -12,10 +12,12 @@ namespace BluTimesheet.Results
 {
     public class ChallengeResult : IHttpActionResult
     {
+
         public ChallengeResult(string loginProvider, ApiController controller)
         {
             LoginProvider = loginProvider;
             Request = controller.Request;
+            
         }
 
         public string LoginProvider { get; set; }
@@ -25,8 +27,11 @@ namespace BluTimesheet.Results
         {
             Request.GetOwinContext().Authentication.Challenge(LoginProvider);
 
-            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
-            response.RequestMessage = Request;
+
+            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.Unauthorized)
+            {
+                RequestMessage = Request
+            };
             return Task.FromResult(response);
         }
     }
