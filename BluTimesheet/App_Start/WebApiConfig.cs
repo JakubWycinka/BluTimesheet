@@ -15,6 +15,7 @@ using BluTimesheet.Utils;
 using Newtonsoft.Json.Serialization;
 using System.Net.Http.Formatting;
 using Newtonsoft.Json;
+using Microsoft.Owin.Security.OAuth;
 
 namespace BluTimesheet
 {
@@ -35,8 +36,17 @@ namespace BluTimesheet
             //Global validation
             config.Filters.Add(new ValidateModelAttribute());
 
+            
+                
+
             //Global Authorization
             //config.Filters.Add(new AuthorizeAttribute());
+
+
+            // Configure Web API to use only bearer token authentication.
+            config.SuppressDefaultHostAuthentication();
+            config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+
 
             config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(

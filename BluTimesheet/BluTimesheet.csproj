@@ -222,8 +222,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Context\TimesheetDbContext.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActivityTypeController.cs" />
     <Compile Include="Controllers\ActivityController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
@@ -236,17 +239,23 @@
       <DependentUpon>201711090917568_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Auth\AccountBindingModels.cs" />
+    <Compile Include="Models\Auth\AccountViewModels.cs" />
+    <Compile Include="Models\Auth\IdentityModels.cs" />
     <Compile Include="Models\ProjectType.cs" />
+    <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Repositories\GenericRepository\GenericRepository.cs" />
     <Compile Include="Repositories\GenericRepository\IGenericRepository.cs" />
     <Compile Include="Repositories\ProjectTypeRepository.cs" />
+    <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Services\implementations\ActivityTypeService.cs" />
     <Compile Include="Services\implementations\ActivityService.cs" />
     <Compile Include="Services\implementations\ProjectTypeService.cs" />
-    <Compile Include="Services\implementations\ReportingService.cs" />
+    <Compile Include="Services\implementations\ReportService.cs" />
     <Compile Include="Services\implementations\UserTypeService.cs" />
     <Compile Include="Services\interfaces\IActivityTypeService.cs" />
     <Compile Include="Services\interfaces\IActivityService.cs" />
+    <Compile Include="Services\interfaces\IEncrypter.cs" />
     <Compile Include="Services\interfaces\IProjectService.cs" />
     <Compile Include="Services\interfaces\IProjectTypeService.cs" />
     <Compile Include="Services\interfaces\IReportService.cs" />
@@ -268,6 +277,7 @@
     <Compile Include="Services\implementations\ProjectService.cs" />
     <Compile Include="Services\implementations\UserService.cs" />
     <Compile Include="Services\interfaces\IUserTypeService.cs" />
+    <Compile Include="Startup.cs" />
     <Compile Include="Utils\ValidateModelAttribute .cs" />
   </ItemGroup>
   <ItemGroup>

@@ -17,15 +17,8 @@ namespace BluTimesheet
     {
         protected void Application_Start()
         {
-            //var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
-            //json.SerializerSettings.PreserveReferencesHandling =
-            //   Newtonsoft.Json.PreserveReferencesHandling.All;
-
-            GlobalConfiguration.Configuration.Formatters
-                  .JsonFormatter.SerializerSettings.Re‌​ferenceLoopHandling
-                  = ReferenceLoopHandling.Ignore;
-            
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
         }
     }
 }
