@@ -222,7 +222,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="Authorization\ApplicationRoleManager.cs" />
+    <Compile Include="Authorization\ApplicationSignInManager.cs" />
+    <Compile Include="Authorization\ApplicationUser.cs" />
+    <Compile Include="Authorization\ApplicationUserManager.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Context\TimesheetDbContext.cs" />
@@ -234,18 +237,18 @@
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserTypeController.cs" />
-    <Compile Include="Migrations\201711090917568_initial.cs" />
-    <Compile Include="Migrations\201711090917568_initial.Designer.cs">
-      <DependentUpon>201711090917568_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201711141353565_Initial.cs" />
+    <Compile Include="Migrations\201711141353565_Initial.Designer.cs">
+      <DependentUpon>201711141353565_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountBindingModels.cs" />
+    <Compile Include="Authorization\AccountBindingModels.cs" />
     <Compile Include="Models\ProjectType.cs" />
-    <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Authorization\ApplicationOAuthProvider.cs" />
     <Compile Include="Repositories\GenericRepository\GenericRepository.cs" />
     <Compile Include="Repositories\GenericRepository\IGenericRepository.cs" />
     <Compile Include="Repositories\ProjectTypeRepository.cs" />
-    <Compile Include="Results\ChallengeResult.cs" />
+    <Compile Include="HttpActionResults\ChallengeResult.cs" />
     <Compile Include="Services\implementations\ActivityTypeService.cs" />
     <Compile Include="Services\implementations\ActivityService.cs" />
     <Compile Include="Services\implementations\ProjectTypeService.cs" />
@@ -275,15 +278,14 @@
     <Compile Include="Services\implementations\UserService.cs" />
     <Compile Include="Services\interfaces\IUserTypeService.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Utils\Helper.cs" />
-    <Compile Include="Utils\ValidateModelAttribute .cs" />
+    <Compile Include="FilterAttributes\ValidateModelAttribute .cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711090917568_initial.resx">
-      <DependentUpon>201711090917568_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711141353565_Initial.resx">
+      <DependentUpon>201711141353565_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

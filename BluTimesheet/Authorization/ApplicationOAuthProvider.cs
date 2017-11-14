@@ -10,8 +10,9 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Http;
 
-namespace BluTimesheet.Providers
+namespace BluTimesheet.Authorization
 {
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
@@ -31,7 +32,7 @@ namespace BluTimesheet.Providers
         {
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
-            User user = await userManager.FindAsync(context.UserName, context.Password);
+            ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
 
             if (user == null)
             {
@@ -39,10 +40,10 @@ namespace BluTimesheet.Providers
                 return;
             }
 
-            ClaimsIdentity oAuthIdentity = await Helper.GenerateUserIdentityAsync(userManager,
-               OAuthDefaults.AuthenticationType, user);
-            ClaimsIdentity cookiesIdentity = await Helper.GenerateUserIdentityAsync(userManager,
-                CookieAuthenticationDefaults.AuthenticationType, user);
+            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
+               OAuthDefaults.AuthenticationType);
+            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
+                CookieAuthenticationDefaults.AuthenticationType);
 
             AuthenticationProperties properties = CreateProperties(user.UserName);
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
@@ -70,7 +71,7 @@ namespace BluTimesheet.Providers
 
             return Task.FromResult<object>(null);
         }
-
+        
         public override Task ValidateClientRedirectUri(OAuthValidateClientRedirectUriContext context)
         {
             if (context.ClientId == _publicClientId)

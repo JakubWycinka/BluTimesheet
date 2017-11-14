@@ -1,6 +1,9 @@
 namespace BluTimesheet.Migrations
 {
+    using BluTimesheet.Authorization;
     using BluTimesheet.Models;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -15,6 +18,7 @@ namespace BluTimesheet.Migrations
 
         protected override void Seed(BluTimesheet.Context.TimesheetDbContext context)
         {
+
             UserType userTypeUser = new UserType { Role = "employee" };
             UserType userTypeAdmin = new UserType { Role = "admin" };
             UserType userTypeManager = new UserType { Role = "manager" };
@@ -25,7 +29,6 @@ namespace BluTimesheet.Migrations
 
                 Name = "Jakub",
                 Surname = "Wycinka",
-                Email = "j.wycinka@blunovation.com",
                 UserType = userTypeUser,
 
             };
@@ -36,7 +39,6 @@ namespace BluTimesheet.Migrations
 
                 Name = "Krzysztof",
                 Surname = "Kluszczyñski",
-                Email = "k.kluszczynski@blunovation.com",
                 UserType = userTypeAdmin
             };
 
@@ -64,7 +66,7 @@ namespace BluTimesheet.Migrations
                 ActivityType = activity1,
                 User = user1,
             };
-            
+
             context.ProjectType.AddOrUpdate(x => x.Name, projectType1, projectType2);
             context.Project.AddOrUpdate(x => x.Name, project1, project2);
             context.UserType.AddOrUpdate(x => x.Role, userTypeUser, userTypeAdmin, userTypeManager, userTypeDirector);
@@ -73,6 +75,46 @@ namespace BluTimesheet.Migrations
             context.Activity.AddOrUpdate(x => x.End, dailyActivity1);
             context.SaveChanges();
 
-        }
+
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            string adminRole = "Admin";
+            string userRole = "User";
+            string password = "123456";
+            string test = "test";
+
+            //Create Role Test and User Test
+            RoleManager.Create(new IdentityRole(test));
+            UserManager.Create(new ApplicationUser() { UserName = test });
+
+            //Create Role Admin if it does not exist
+            if (!RoleManager.RoleExists(adminRole))
+            {
+                var roleresult = RoleManager.Create(new IdentityRole(adminRole));
+            }
+
+            //Create Role User if it does not exist
+            if (!RoleManager.RoleExists(adminRole))
+            {
+                var roleresult2 = RoleManager.Create(new IdentityRole(userRole));
+            }
+
+            //Create User=Admin with password=123456
+            var user = new ApplicationUser
+            {
+                UserName = adminRole,
+                User = user2
+            };
+            var adminresult = UserManager.Create(user, password);
+
+            //Add User Admin to Role Admin
+            if (adminresult.Succeeded)
+            {
+                var result = UserManager.AddToRole(user.Id, adminRole);
+            }
+        
+
+    }
     }
 }

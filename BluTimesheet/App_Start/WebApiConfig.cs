@@ -16,6 +16,9 @@ using Newtonsoft.Json.Serialization;
 using System.Net.Http.Formatting;
 using Newtonsoft.Json;
 using Microsoft.Owin.Security.OAuth;
+using BluTimesheet.Authorization;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace BluTimesheet
 {

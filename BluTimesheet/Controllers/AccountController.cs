@@ -1,6 +1,7 @@
 ﻿
+using BluTimesheet.Authorization;
 using BluTimesheet.Models;
-using BluTimesheet.Providers;
+
 using BluTimesheet.Results;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -26,33 +27,13 @@ namespace BluTimesheet.Controllers
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";
-        private ApplicationUserManager _userManager;
-
+        private ApplicationUserManager userManager;
+        
         public AccountController()
         {
+            this.userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
         }
-
-        public AccountController(ApplicationUserManager userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
-        {
-            UserManager = userManager;
-            AccessTokenFormat = accessTokenFormat;
-        }
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
-
-        public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
-
+        
         
         // POST api/Account/Logout
         [Route("Logout")]
@@ -72,7 +53,7 @@ namespace BluTimesheet.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
+            IdentityResult result = await userManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
 
             if (!result.Succeeded)
@@ -92,7 +73,7 @@ namespace BluTimesheet.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+            IdentityResult result = await userManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
 
             if (!result.Succeeded)
             {
@@ -113,9 +94,9 @@ namespace BluTimesheet.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new User() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
 
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+            IdentityResult result = await userManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded)
             {
@@ -124,13 +105,26 @@ namespace BluTimesheet.Controllers
 
             return Ok();
         }
-       
+
+        // POST: /Account/Login
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IHttpActionResult> Login(LoginViewModel model)
+        {
+            // This doen't count login failures towards lockout only two factor authentication
+            // To enable password failures to trigger lockout, change to shouldLockout: true
+            var result = await Request.GetOwinContext().Get<ApplicationSignInManager>().PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            return Ok(result);
+        }
+
+
+
         protected override void Dispose(bool disposing)
         {
-            if (disposing && _userManager != null)
+            if (disposing && userManager != null)
             {
-                _userManager.Dispose();
-                _userManager = null;
+                userManager.Dispose();
+                userManager = null;
             }
 
             base.Dispose(disposing);

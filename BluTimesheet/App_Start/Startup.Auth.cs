@@ -1,6 +1,7 @@
-﻿using BluTimesheet.Context;
+﻿using BluTimesheet.Authorization;
+using BluTimesheet.Context;
 
-using BluTimesheet.Providers;
+
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
