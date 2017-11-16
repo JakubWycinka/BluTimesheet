@@ -20,12 +20,7 @@ namespace BluTimesheet.Authorization
 
         public ApplicationOAuthProvider(string publicClientId)
         {
-            if (publicClientId == null)
-            {
-                throw new ArgumentNullException("publicClientId");
-            }
-
-            _publicClientId = publicClientId;
+            _publicClientId = publicClientId ?? throw new ArgumentNullException("publicClientId");
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
@@ -40,10 +35,8 @@ namespace BluTimesheet.Authorization
                 return;
             }
 
-            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
-               OAuthDefaults.AuthenticationType);
-            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
-                CookieAuthenticationDefaults.AuthenticationType);
+            ClaimsIdentity oAuthIdentity = await userManager.CreateIdentityAsync(user, OAuthDefaults.AuthenticationType);
+            ClaimsIdentity cookiesIdentity = await userManager.CreateIdentityAsync(user, OAuthDefaults.AuthenticationType);
 
             AuthenticationProperties properties = CreateProperties(user.UserName);
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);

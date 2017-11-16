@@ -1,10 +1,7 @@
 ﻿using BluTimesheet.Repositories;
 using BluTimesheet.Services.interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using BluTimesheet.Models;
+using BluTimesheet.Models.DbModels;
 
 namespace BluTimesheet.Services.implementations
 {
@@ -51,7 +48,7 @@ namespace BluTimesheet.Services.implementations
 
         public IEnumerable<Activity> GetActivitesByUser(string id)
         {
-            return activityRepository.Search(x => x.User.Id.Equals(id));
+            return activityRepository.Search(x => x.UserId.Equals(id));
         }
 
         public IEnumerable<Activity> GetActivitesByProject(int id)

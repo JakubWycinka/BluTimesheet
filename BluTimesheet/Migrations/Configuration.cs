@@ -1,13 +1,11 @@
 namespace BluTimesheet.Migrations
 {
     using BluTimesheet.Authorization;
-    using BluTimesheet.Models;
+    using BluTimesheet.Models.DbModels;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<BluTimesheet.Context.TimesheetDbContext>
     {
@@ -18,37 +16,63 @@ namespace BluTimesheet.Migrations
 
         protected override void Seed(BluTimesheet.Context.TimesheetDbContext context)
         {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
-            UserType userTypeUser = new UserType { Role = "employee" };
-            UserType userTypeAdmin = new UserType { Role = "admin" };
-            UserType userTypeManager = new UserType { Role = "manager" };
-            UserType userTypeDirector = new UserType { Role = "director" };
+            string roleAdmin = "Admin";
+            string roleUser = "User";
+            string password = "Password1!";
+            string emailJakub = "j.wycinka@blunovation.com";
+            string emailKrzysztof = "k.kluszczyñski@blunovation.com";
 
-            User user1 = new User
+            if (!roleManager.RoleExists(roleAdmin))
             {
+                var roleresult = roleManager.Create(new IdentityRole(roleAdmin));
+            }
+            
+            if (!roleManager.RoleExists(roleUser))
+            {
+                var roleresult2 = roleManager.Create(new IdentityRole(roleUser));
+            }
+            
+            var userKrzysztof = new ApplicationUser
+            {
+                Email = emailKrzysztof,
+                UserName = emailKrzysztof,
+                FirstName = "Krzysztof",
+                LastName = "Kluszczyñski",               
+                
+            };
+            var adminresult = userManager.Create(userKrzysztof, password);
 
-                Name = "Jakub",
-                Surname = "Wycinka",
-                UserType = userTypeUser,
+            //Add User Admin to Role Admin
+            if (adminresult.Succeeded)
+            {
+                var result = userManager.AddToRole(userKrzysztof.Id, roleAdmin);
+            }
+
+            var userJakub = new ApplicationUser
+            {
+                Email = emailJakub,
+                UserName = emailJakub,
+                FirstName = "Jakub",
+                LastName = "Wycinka",
 
             };
 
-
-            User user2 = new User
+            var userresult = userManager.Create(userJakub, password);
+            if (userresult.Succeeded)
             {
+                var result = userManager.AddToRole(userJakub.Id, roleUser);
+            }
 
-                Name = "Krzysztof",
-                Surname = "Kluszczyñski",
-                UserType = userTypeAdmin
-            };
+            ProjectType projectBillable = new ProjectType { Name = "Billable" };
+            ProjectType projectNonBillable = new ProjectType { Name = "Non-Billable" };
 
-            ProjectType projectType1 = new ProjectType { Name = "Billable" };
-            ProjectType projectType2 = new ProjectType { Name = "Non-Billable" };
-
-            Project project1 = new Project { Name = "Timesheet", ProjectType = projectType2 };
-            Project project2 = new Project { Name = "Artifex", ProjectType = projectType1 };
-            Project project3 = new Project { Name = "DD-PACK", ProjectType = projectType1 };
-            Project project4 = new Project { Name = "IMPAQ", ProjectType = projectType1 };
+            Project project1 = new Project { Name = "Timesheet", ProjectType = projectNonBillable };
+            Project project2 = new Project { Name = "Artifex", ProjectType = projectBillable };
+            Project project3 = new Project { Name = "DD-PACK", ProjectType = projectBillable };
+            Project project4 = new Project { Name = "IMPAQ", ProjectType = projectBillable };
 
 
             ActivityType activity1 = new ActivityType { Name = "Working" };
@@ -64,57 +88,14 @@ namespace BluTimesheet.Migrations
                 Begining = DateTime.Now,
                 Project = project1,
                 ActivityType = activity1,
-                User = user1,
+                UserId = userJakub.Id
             };
 
-            context.ProjectType.AddOrUpdate(x => x.Name, projectType1, projectType2);
+            context.ProjectType.AddOrUpdate(x => x.Name, projectBillable, projectNonBillable);
             context.Project.AddOrUpdate(x => x.Name, project1, project2);
-            context.UserType.AddOrUpdate(x => x.Role, userTypeUser, userTypeAdmin, userTypeManager, userTypeDirector);
-            context.User.AddOrUpdate(x => x.Name, user1, user2);
             context.ActivityType.AddOrUpdate(x => x.Name, activity1, activity2, activity3, activity4, activity5, activity6);
             context.Activity.AddOrUpdate(x => x.End, dailyActivity1);
             context.SaveChanges();
-
-
-            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-
-            string adminRole = "Admin";
-            string userRole = "User";
-            string password = "123456";
-            string test = "test";
-
-            //Create Role Test and User Test
-            RoleManager.Create(new IdentityRole(test));
-            UserManager.Create(new ApplicationUser() { UserName = test });
-
-            //Create Role Admin if it does not exist
-            if (!RoleManager.RoleExists(adminRole))
-            {
-                var roleresult = RoleManager.Create(new IdentityRole(adminRole));
-            }
-
-            //Create Role User if it does not exist
-            if (!RoleManager.RoleExists(adminRole))
-            {
-                var roleresult2 = RoleManager.Create(new IdentityRole(userRole));
-            }
-
-            //Create User=Admin with password=123456
-            var user = new ApplicationUser
-            {
-                UserName = adminRole,
-                User = user2
-            };
-            var adminresult = UserManager.Create(user, password);
-
-            //Add User Admin to Role Admin
-            if (adminresult.Succeeded)
-            {
-                var result = UserManager.AddToRole(user.Id, adminRole);
-            }
-        
-
     }
     }
 }

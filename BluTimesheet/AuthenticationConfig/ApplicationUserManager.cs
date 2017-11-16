@@ -33,7 +33,7 @@ namespace BluTimesheet.Authorization
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
-                 RequiredLength = 6,
+                RequiredLength = 6,
                 RequireNonLetterOrDigit = true,
                 RequireDigit = true,
                 RequireLowercase = true,
@@ -95,5 +95,6 @@ namespace BluTimesheet.Authorization
             // Call update once when all roles are removed
             return await UpdateAsync(user).ConfigureAwait(false);
         }
+        
     }
 }

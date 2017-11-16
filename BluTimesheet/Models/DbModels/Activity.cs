@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BluTimesheet.Models
+namespace BluTimesheet.Models.DbModels
 {
     public class Activity
     {
@@ -21,7 +21,7 @@ namespace BluTimesheet.Models
         public bool ApprovedByManager { get; set; }
 
         [Required]
-        public virtual User User { get; set; }
+        public string UserId { get; set; }
 
         
 

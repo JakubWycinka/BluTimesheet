@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace BluTimesheet.Models
+namespace BluTimesheet.Models.DbModels
 {
     public class ActivityType
     {

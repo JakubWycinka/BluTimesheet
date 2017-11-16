@@ -1,17 +1,13 @@
-﻿using BluTimesheet.Models;
+﻿using BluTimesheet.Models.DbModels;
 using BluTimesheet.Services.interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace BluTimesheet.Controllers
 {
     public class ActivityController : ApiController
     {
-        private readonly IActivityService activityService;
+        private IActivityService activityService;
 
         public ActivityController(IActivityService activityService)
         {

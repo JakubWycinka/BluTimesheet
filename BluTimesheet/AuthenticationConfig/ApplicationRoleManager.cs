@@ -17,15 +17,9 @@ namespace BluTimesheet.Authorization
         {
         }
 
-
-        public static ApplicationRoleManager Create(
-            IdentityFactoryOptions<ApplicationRoleManager> options,
-            IOwinContext context)
+        public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
         {
-            var manager = new ApplicationRoleManager(
-                new RoleStore<IdentityRole>(
-                    context.Get<TimesheetDbContext>()));
-
+            var manager = new ApplicationRoleManager(new RoleStore<IdentityRole>(context.Get<TimesheetDbContext>()));
             return manager;
         }
     }

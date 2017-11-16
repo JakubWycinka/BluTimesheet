@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BluTimesheet.Models;
+using BluTimesheet.Models.DbModels;
 using BluTimesheet.Repositories;
 using BluTimesheet.Services.interfaces;
 

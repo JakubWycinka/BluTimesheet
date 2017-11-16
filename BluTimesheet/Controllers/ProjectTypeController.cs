@@ -1,15 +1,13 @@
-﻿using BluTimesheet.Models;
-using BluTimesheet.Services.interfaces;
+﻿using BluTimesheet.Services.interfaces;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using BluTimesheet.Models.DbModels;
 
 namespace BluTimesheet.Controllers
 {
     public class ProjectTypeController : ApiController
     {
-        private readonly IProjectTypeService projectTypeService;
+        private IProjectTypeService projectTypeService;
 
         public ProjectTypeController(IProjectTypeService projectTypeService)
         {

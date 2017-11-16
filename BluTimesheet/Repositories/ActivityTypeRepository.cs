@@ -1,8 +1,5 @@
 ﻿using BluTimesheet.Context;
-using BluTimesheet.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using BluTimesheet.Models.DbModels;
 
 namespace BluTimesheet.Repositories
 {

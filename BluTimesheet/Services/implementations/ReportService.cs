@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using BluTimesheet.Models;
+using BluTimesheet.Models.DbModels;
 
 namespace BluTimesheet.Services.implementations
 {
@@ -16,7 +17,7 @@ namespace BluTimesheet.Services.implementations
             this.activityService = activityService;
         }
 
-        public IDictionary<User, int> SumOfHoursSpentOnExactActivityTypePerUser(int activityTypeId)
+        public IDictionary<string, int> SumOfHoursSpentOnExactActivityTypePerUser(int activityTypeId)
         {
             throw new NotImplementedException();
         }
@@ -26,7 +27,7 @@ namespace BluTimesheet.Services.implementations
             throw new NotImplementedException();
         }
 
-        public IDictionary<User, int> SumOfHoursSpentOnProjectPerUser(int id)
+        public IDictionary<string, int> SumOfHoursSpentOnProjectPerUser(int id)
         {
             throw new NotImplementedException();
         }
