@@ -55,25 +55,6 @@ namespace BluTimesheet.Migrations
                 userManager.AddToRole(userKrzysztof.Id, Startup.roleAdmin);
             }
             
-
-            var userJakub = userManager.FindByEmail("j.wycinka@blunovation.com");
-            
-            if (userJakub == null)
-            {
-                userJakub = new ApplicationUser
-                {
-                    Email = "j.wycinka@blunovation.com",
-                    UserName = "j.wycinka@blunovation.com",
-                    FirstName = "Jakub",
-                    LastName = "Wycinka",
-
-                };
-                string passwordJakub = "Password1!";
-                userManager.Create(userJakub, passwordJakub);
-                userManager.AddToRole(userJakub.Id, Startup.roleUser);
-            }
-
-
             var userPiotr = userManager.FindByEmail("p.nasinski@blunovation.com");
             
             if (userPiotr == null)
@@ -84,6 +65,7 @@ namespace BluTimesheet.Migrations
                     UserName = "p.nasinski@blunovation.com",
                     FirstName = "Piotr",
                     LastName = "Nasiñski",
+                    SuperiorId = userKrzysztof.Id
 
                 };
                 string passwordPiotr = "Password1!";
@@ -91,7 +73,41 @@ namespace BluTimesheet.Migrations
                 userManager.AddToRole(userPiotr.Id, Startup.roleManager);
             }
 
+            var userJakub = userManager.FindByEmail("j.wycinka@blunovation.com");
 
+            if (userJakub == null)
+            {
+                userJakub = new ApplicationUser
+                {
+                    Email = "j.wycinka@blunovation.com",
+                    UserName = "j.wycinka@blunovation.com",
+                    FirstName = "Jakub",
+                    LastName = "Wycinka",
+                    SuperiorId = userPiotr.Id
+
+                };
+                string passwordJakub = "Password1!";
+                userManager.Create(userJakub, passwordJakub);
+                userManager.AddToRole(userJakub.Id, Startup.roleUser);
+            }
+
+            var userSlawomir = userManager.FindByEmail("s.rzeppa@blunovation.com");
+
+            if (userSlawomir == null)
+            {
+                userSlawomir = new ApplicationUser
+                {
+                    Email = "s.rzeppa@blunovation.com",
+                    UserName = "s.rzeppa@blunovation.com",
+                    FirstName = "S³awomir",
+                    LastName = "Rzeppa",
+                    SuperiorId = userPiotr.Id
+
+                };
+                string passwordSlawomir = "Password1!";
+                userManager.Create(userSlawomir, passwordSlawomir);
+                userManager.AddToRole(userSlawomir.Id, Startup.roleUser);
+            }
 
 
             ProjectType projectBillable = new ProjectType { Name = "Billable" };
@@ -121,6 +137,7 @@ namespace BluTimesheet.Migrations
             Activity activity2 = new Activity
             {
                 Begining = DateTime.Now.AddDays(-1),
+                End = DateTime.Now.AddDays(-1).AddHours(8),
                 Project = project1,
                 ActivityType = activityType1,
                 UserId = userJakub.Id
@@ -128,6 +145,7 @@ namespace BluTimesheet.Migrations
             Activity activity3 = new Activity
             {
                 Begining = DateTime.Now.AddDays(-2),
+                End = DateTime.Now.AddDays(-2).AddHours(8),
                 Project = project1,
                 ActivityType = activityType1,
                 UserId = userJakub.Id
@@ -135,6 +153,7 @@ namespace BluTimesheet.Migrations
             Activity activity4 = new Activity
             {
                 Begining = DateTime.Now.AddDays(-3),
+                End = DateTime.Now.AddDays(-3).AddHours(8),
                 Project = project1,
                 ActivityType = activityType1,
                 UserId = userJakub.Id

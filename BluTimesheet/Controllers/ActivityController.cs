@@ -3,12 +3,14 @@ using BluTimesheet.Services.interfaces;
 using System.Collections.Generic;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
+using BluTimesheet.Authorization;
 
 namespace BluTimesheet.Controllers
 {
     public class ActivityController : ApiController
     {
         private IActivityService activityService;
+        private ApplicationUserManager userManager;
 
         public ActivityController(IActivityService activityService)
         {
@@ -22,21 +24,34 @@ namespace BluTimesheet.Controllers
             activityService.Add(activity);
             return Ok();
         }
+
         [Authorize(Roles = Startup.roleAdmin)]
         public IEnumerable<Activity> GetActivities()
         {
             return activityService.GetAll();
         }
+
         [Route("api/user/{id}/activities")]
-        public IEnumerable<Activity> GetActivitiesByUser(string id = "")
+        public IHttpActionResult GetActivitiesByUser(string id = "")
         {
-            if (User.IsInRole(Startup.roleAdmin))
+            if (User.IsInRole(Startup.roleAdmin) && id!="")
             {
-                return activityService.GetActivitesByUser(id);
+                return Ok(activityService.GetActivitesByUser(id));
+            }
+            else if (User.IsInRole(Startup.roleManager) && id != "")
+            {
+                var user = userManager.FindById(id);
+                if (user.SuperiorId.Equals(User.Identity.GetUserId()))
+                {
+                    return Ok(activityService.GetActivitesByUser(id));
+                } else
+                {
+                    return Unauthorized();
+                }
             }
             else
             {
-                return activityService.GetActivitesByUser(User.Identity.GetUserId());
+                return Ok(activityService.GetActivitesByUser(User.Identity.GetUserId()));
             }
             
         }
