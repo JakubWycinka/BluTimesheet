@@ -5,6 +5,7 @@ using BluTimesheet.Models.DbModels;
 
 namespace BluTimesheet.Controllers
 {
+    [Authorize(Roles = Startup.roleAdmin)]
     public class ActivityTypeController : ApiController
     {
         private IActivityTypeService activityTypeService;
@@ -45,14 +46,30 @@ namespace BluTimesheet.Controllers
 
         public IHttpActionResult PutActivityType(ActivityType activityType)
         {
-            activityTypeService.Update(activityType);
-            return Ok();
+            var activityTypeFromDb = activityTypeService.Get(activityType.Id);
+            if (activityTypeFromDb != null)
+            {
+                activityTypeService.Update(activityType);
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         public IHttpActionResult DeleteActivityType(int id)
         {
-            activityTypeService.Remove(id);
-            return Ok();
+            var activityTypeFromDb = activityTypeService.Get(id);
+            if (activityTypeFromDb != null)
+            {
+                activityTypeService.Remove(id);
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }

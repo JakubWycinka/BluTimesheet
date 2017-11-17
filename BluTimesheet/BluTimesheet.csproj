@@ -235,6 +235,10 @@
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\ProjectTypeController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Migrations\201711161349418_Initial.cs" />
+    <Compile Include="Migrations\201711161349418_Initial.Designer.cs">
+      <DependentUpon>201711161349418_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthenticationBindingModels\ChangePasswordModel.cs" />
     <Compile Include="Models\AuthenticationBindingModels\LoginModel.cs" />
@@ -270,6 +274,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201711161349418_Initial.resx">
+      <DependentUpon>201711161349418_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

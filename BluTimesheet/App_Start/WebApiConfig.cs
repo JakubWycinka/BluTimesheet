@@ -15,6 +15,7 @@ namespace BluTimesheet
     {
         public static void Register(HttpConfiguration config)
         {
+            
             //Dependecy Injection
             var container = new UnityContainer();
             container.RegisterType<IActivityTypeService, ActivityTypeService>();

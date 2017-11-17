@@ -5,6 +5,7 @@ using BluTimesheet.Models.DbModels;
 
 namespace BluTimesheet.Controllers
 {
+    [Authorize(Roles = Startup.roleAdmin)]
     public class ProjectController : ApiController
     {
         private IProjectService projectService;
@@ -48,14 +49,30 @@ namespace BluTimesheet.Controllers
 
         public IHttpActionResult PutProject(Project project)
         {
-            projectService.Update(project);
-            return Ok();
+            var projectFromDb = projectService.Get(project.Id);
+            if (projectFromDb != null)
+            {
+                projectService.Update(projectFromDb);
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         public IHttpActionResult DeleteProject(int id)
         {
-            projectService.Remove(id);
-            return Ok();
+            var projectFromDb = projectService.Get(id);
+            if (projectFromDb != null)
+            {
+                projectService.Remove(id);
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }

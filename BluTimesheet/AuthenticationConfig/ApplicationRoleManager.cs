@@ -12,10 +12,7 @@ namespace BluTimesheet.Authorization
 {
     public class ApplicationRoleManager : RoleManager<IdentityRole>
     {
-        public ApplicationRoleManager(IRoleStore<IdentityRole, string> roleStore)
-            : base(roleStore)
-        {
-        }
+        public ApplicationRoleManager(IRoleStore<IdentityRole, string> roleStore) : base(roleStore){}
 
         public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
         {

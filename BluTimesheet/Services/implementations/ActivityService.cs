@@ -16,7 +16,7 @@ namespace BluTimesheet.Services.implementations
         }
 
         public void Add(Activity dailyActivity)
-        {
+        {            
             activityRepository.Add(dailyActivity);
         }
 
