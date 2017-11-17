@@ -60,5 +60,12 @@ namespace BluTimesheet.Services.implementations
         {
             return activityRepository.Search(x => x.ActivityType.Id == id);
         }
+
+        public void SubmitToManager(int id)
+        {
+            throw new System.NotImplementedException();
+            //TODO
+            //send email
+        }
     }
 }
